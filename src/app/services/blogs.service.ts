@@ -38,6 +38,7 @@ export class BlogsService {
       }
     );
 
+    //Using any because the object that the api returns is really big
     return this.http.get(url).pipe(
       map((response: any) =>
         response.contentlets
