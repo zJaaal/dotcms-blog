@@ -8,7 +8,7 @@ import { BlogInfo } from '../models/blogInfo.model';
   providedIn: 'root',
 })
 export class BlogsService {
-  private LIMIT = 10;
+  private LIMIT = 4;
 
   constructor(private http: HttpClient) {}
 
