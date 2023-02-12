@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(./styles/index.css);
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+/* Debug colors */
+
+.debug-blue {
+  background-color: blue;
+}
+
+.debug-red {
+  background-color: red;
+}
+
+.debug-yellow {
+  background-color: yellow;
+}
