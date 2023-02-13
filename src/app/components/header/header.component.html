@@ -1,3 +1,9 @@
-<header class="header-container d-flex w-100 debug-blue">
-  <p>header works!</p>
+<header class="header-container d-flex align-items-center w-100">
+  <h2 class="flex-1 title">dotCMS <small>Blog</small></h2>
+  <div class="select-container">
+    <select class="select" (change)="handleYearChange($event)">
+      <option disabled>select a year</option>
+      <option *ngFor="let year of years; let i = index">{{ year }}</option>
+    </select>
+  </div>
 </header>
