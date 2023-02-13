@@ -39,12 +39,14 @@ export class BlogsService {
       map((response: any) =>
         response.contentlets
           ? response.contentlets.map((post: any) => {
-              return new BlogInfo(
-                post.identifier,
-                post.title,
-                post.postingDate,
-                post.image
-              );
+              // return post;
+              return new BlogInfo({
+                id: post.identifier,
+                title: post.title,
+                postingDate: post.postingDate,
+                imageURL: post.image,
+                teaser: post.teaser,
+              });
             })
           : []
       )
