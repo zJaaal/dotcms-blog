@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
-import { BlogInfo } from '../models/blogInfo.model';
+import { BlogInfo } from '../../models/blogInfo.model';
+import { UrlBuilderService } from '../urlBuilder/url-builder.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,35 +11,31 @@ import { BlogInfo } from '../models/blogInfo.model';
 export class BlogsService {
   private LIMIT = 4;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private builder: UrlBuilderService) {}
 
   getInfo(year?: number, page: number = 1) {
     let OFFSET = this.LIMIT * (page - 1);
-    let dateQuery = year
-      ? environment.DATE_QUERY_TEMPLATE.replaceAll('YEAR', year.toString())
-      : '';
 
-    let url = environment.API_BASE_QUERY_URL.replace(
-      new RegExp('DATE_QUERY|LIMIT|OFFSET', 'g'),
-      (match) => {
-        switch (match) {
-          case 'DATE_QUERY': {
-            return encodeURI(dateQuery);
-          }
-          case 'LIMIT': {
-            return this.LIMIT.toString();
-          }
-          case 'OFFSET': {
-            return OFFSET.toString();
-          }
-          default: {
-            return '';
-          }
-        }
-      }
-    );
+    let baseQuery = this.builder
+      .setBaseUrl(environment.API_BASE_QUERY_URL)
+      .query('+ContentType:Blog');
 
-    return this.http.get(url).pipe(
+    if (year) {
+      baseQuery = baseQuery.query({
+        luceneQuery: '+Blog.postingDate',
+        from: `${year}0101`,
+        to: `${year}1231`,
+      });
+    }
+
+    const finalURL = baseQuery
+      .orderBy('modDate desc')
+      .limit(this.LIMIT)
+      .offset(OFFSET)
+      .buildURL();
+
+    //Using any because the object that the api returns is really big
+    return this.http.get(finalURL).pipe(
       map((response: any) =>
         response.contentlets
           ? response.contentlets.map((post: any) => {
