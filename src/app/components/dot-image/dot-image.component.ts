@@ -22,8 +22,10 @@ export class DotImageComponent {
 
   ngOnInit() {
     this.baseURL = this.builder.setBaseUrl(environment.API_BASE + this.src);
+
     if (this.width) this.baseURL = this.baseURL.width(this.width);
     if (this.height) this.baseURL = this.baseURL.height(this.height);
+
     this.finalSRC = this.baseURL.buildImgURL(this.format);
   }
 }

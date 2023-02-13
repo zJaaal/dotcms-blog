@@ -1,7 +1,6 @@
-<div class="d-flex flex-column">
-  <div class="debug-yellow">xd</div>
-  <app-blog-item
-    *ngFor="let blogData of blogsList"
-    [blogData]="blogData"
-  ></app-blog-item>
-</div>
+<app-blog-item
+  class="d-flex flex-column item-container justify-content-end pointer"
+  *ngFor="let blogData of blogsList"
+  [blogData]="blogData"
+></app-blog-item>
+<div class="flex-1 d-flex page-container">xd</div>
