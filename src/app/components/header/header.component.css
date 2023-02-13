@@ -1,3 +1,20 @@
 .header-container {
   height: 90px;
+  background-color: var(--primary);
+}
+
+.title {
+  color: #F3F6FD;
+  padding-left: 20px;
+}
+
+.select-container {
+  padding-right: 20px;
+}
+
+.select {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
