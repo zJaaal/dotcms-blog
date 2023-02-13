@@ -6,14 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { BlogListComponent } from './components/blog-list/blog-list.component';
-import { NewsComponent } from './components/news/news.component';
+import { BlogComponent } from './components/blog/blog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogListComponent,
     HeaderComponent,
-    NewsComponent,
+    BlogComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

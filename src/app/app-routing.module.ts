@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NewsComponent } from './components/news/news.component';
+import { BlogComponent } from './components/blog/blog.component';
 
 const routes: Routes = [
   {
     path: ':link',
-    component: NewsComponent,
+    component: BlogComponent,
   },
 ];
 
