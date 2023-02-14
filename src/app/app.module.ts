@@ -10,6 +10,7 @@ import { BlogComponent } from './components/blog/blog.component';
 import { BlogItemComponent } from './components/blog-list/components/blog-item/blog-item.component';
 import { DotImageComponent } from './components/dot-image/dot-image.component';
 import { PaginationComponent } from './components/blog-list/components/pagination/pagination.component';
+import { TagComponent } from './components/blog/tag/tag.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PaginationComponent } from './components/blog-list/components/paginatio
     BlogItemComponent,
     DotImageComponent,
     PaginationComponent,
+    TagComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
