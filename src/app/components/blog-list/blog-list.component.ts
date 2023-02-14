@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { BlogInfo } from 'src/app/models/blogInfo.model';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
 import { FilterService } from 'src/app/services/filter/filter.service';
@@ -14,10 +15,12 @@ export class BlogListComponent {
   blogListLength: number = 4;
   rest: number[] = [];
   empty: boolean = false;
+  firtsRender: boolean = true;
 
   constructor(
     private blogs: BlogsService,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -31,7 +34,11 @@ export class BlogListComponent {
           this.blogListLength = response.length;
           this.rest = Array.from({ length: 4 - this.blogListLength });
           this.empty = !Boolean(this.blogListLength);
-          console.log(this.empty);
+
+          if (!this.empty && this.firtsRender) {
+            this.router.navigate([this.blogsList[0].id]);
+            this.firtsRender = false;
+          }
         });
     });
   }
