@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
 import { BlogInfo } from '../../models/blogInfo.model';
 import { UrlBuilderService } from '../urlBuilder/url-builder.service';
+import { BlogData } from 'src/app/models/blogData.model';
 
 @Injectable({
   providedIn: 'root',
@@ -55,8 +56,20 @@ export class BlogsService {
   getBlog(id: string) {
     let url = environment.API_BASE_ID_URL.replace('IDENTIFIER', id);
 
-    return this.http
-      .get(url)
-      .pipe(map((response: any) => response.contentlets[0]));
+    return this.http.get(url).pipe(
+      map((response: any) => {
+        let data = response.contentlets[0];
+
+        return data
+          ? new BlogData({
+              tags: data.tags,
+              title: data.title,
+              postingDate: data.postingDate,
+              imageURL: data.image,
+              blogContent: data.blogContent,
+            })
+          : undefined;
+      })
+    );
   }
 }
