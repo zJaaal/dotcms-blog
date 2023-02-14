@@ -1,1 +1,22 @@
-<p>news-list works!</p>
+<div *ngIf="!loading" class="bg-blue">
+  <app-blog-item
+    class="d-flex flex-column item-container justify-content-end pointer"
+    *ngFor="let blogData of blogsList"
+    [blogData]="blogData"
+  ></app-blog-item>
+  <div
+    class="d-flex flex-column skeleton justify-content-end"
+    *ngFor="let _ of rest"
+  ></div>
+</div>
+<div *ngIf="loading" class="bg-blue">
+  <div
+    class="d-flex flex-column skeleton justify-content-end"
+    *ngFor="let skeleton of [1, 2, 3, 4]"
+  ></div>
+</div>
+<app-pagination
+  [listLength]="blogListLength"
+  [empty]="empty"
+  class="flex-1 d-flex page-container align-items-start justify-content-center"
+></app-pagination>

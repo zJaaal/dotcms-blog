@@ -30,6 +30,10 @@
   flex: 4;
 }
 
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
 /* justify content */
 
 .justify-content-center {

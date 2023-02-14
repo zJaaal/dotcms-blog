@@ -1,18 +1,23 @@
+import { BlogInfoConstructor } from './types';
+
 export class BlogInfo {
   id: string;
   title: string;
   postingDate: Date;
-  imageUrl: string;
+  imageURL: string;
+  teaser: string;
 
-  constructor(
-    id: string,
-    title: string,
-    postingDate: string,
-    imageUrl: string
-  ) {
+  constructor({
+    id,
+    title,
+    postingDate,
+    imageURL,
+    teaser,
+  }: BlogInfoConstructor) {
     this.id = id;
     this.title = title;
     this.postingDate = new Date(postingDate);
-    this.imageUrl = imageUrl;
+    this.imageURL = imageURL;
+    this.teaser = teaser;
   }
 }

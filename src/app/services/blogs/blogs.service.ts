@@ -9,7 +9,7 @@ import { UrlBuilderService } from '../urlBuilder/url-builder.service';
   providedIn: 'root',
 })
 export class BlogsService {
-  private LIMIT = 4;
+  private LIMIT = environment.API_LIMIT;
 
   constructor(private http: HttpClient, private builder: UrlBuilderService) {}
 
@@ -39,12 +39,13 @@ export class BlogsService {
       map((response: any) =>
         response.contentlets
           ? response.contentlets.map((post: any) => {
-              return new BlogInfo(
-                post.identifier,
-                post.title,
-                post.postingDate,
-                post.image
-              );
+              return new BlogInfo({
+                id: post.identifier,
+                title: post.title,
+                postingDate: post.postingDate,
+                imageURL: post.image,
+                teaser: post.teaser,
+              });
             })
           : []
       )

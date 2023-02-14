@@ -1,0 +1,52 @@
+.info-container {
+  width: 280px;
+  z-index: 1;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.item-container:hover .info-container {
+  opacity: 0;
+}
+
+.item-container:hover .info-container-hover {
+  opacity: 1;
+}
+
+
+.image-container {
+  position: absolute;
+  height: 130px;
+}
+
+.info-container-hover {
+  height: 130px;
+  width: 280px;
+  z-index: 1;
+  visibility: none;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+}
+
+.info-hover {
+  color: white;
+  line-break: strict;
+  font-size: 14px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.info {
+  color: white;
+  line-break: strict;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.small {
+  font-size: 12px;
+}
