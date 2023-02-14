@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { FilterService } from 'src/app/services/filter/filter.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pagination',
@@ -8,8 +9,11 @@ import { FilterService } from 'src/app/services/filter/filter.service';
 })
 export class PaginationComponent {
   @Input() listLength!: number;
+  @Input() empty!: boolean;
 
-  private maxPage: number = Number.MAX_SAFE_INTEGER;
+  maxSafeInteger = Number.MAX_SAFE_INTEGER;
+
+  maxPage: number = this.maxSafeInteger;
 
   page: number = 1;
 
@@ -19,12 +23,39 @@ export class PaginationComponent {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (
+      changes['listLength'].currentValue > 0 &&
+      this.listLength == environment.API_LIMIT
+    ) {
+      this.maxPage = this.maxSafeInteger;
+    }
+    if (
+      changes['listLength'].currentValue > 0 &&
+      this.listLength < environment.API_LIMIT
+    ) {
+      this.maxPage = this.page;
+    }
+    if (
+      changes['listLength'].currentValue == 0 &&
+      changes['listLength'].previousValue > 0 &&
+      this.page > 1
+    ) {
+      --this.page;
+      this.filterService.setCurrentFilter({
+        ...this.filterService.getCurrentFilter(),
+        page: this.page,
+      });
+      this.maxPage = this.page;
+    }
+  }
+
   handleChange(type: string) {
-    if (this.page == 1) this.maxPage = Number.MAX_SAFE_INTEGER;
-    if (this.listLength < 4) this.maxPage = this.page;
-    if (type == 'DECREMENT' && this.page == 1) return;
+    if (this.empty) return;
     if (type == 'INCREMENT' && this.page == this.maxPage) return;
+    if (type == 'DECREMENT' && this.page == 1) return;
     if (type == 'DECREMENT') --this.page;
+    if (this.page == 1) this.maxPage = this.maxSafeInteger;
     if (type == 'INCREMENT') ++this.page;
 
     this.filterService.setCurrentFilter({

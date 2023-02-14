@@ -10,6 +10,10 @@ import { FilterService } from 'src/app/services/filter/filter.service';
 })
 export class BlogListComponent {
   blogsList: BlogInfo[] = [];
+  loading: boolean = false;
+  blogListLength: number = 4;
+  rest: number[] = [];
+  empty: boolean = false;
 
   constructor(
     private blogs: BlogsService,
@@ -18,11 +22,16 @@ export class BlogListComponent {
 
   ngOnInit() {
     this.filterService.currentFilter.subscribe(({ year, page }) => {
+      this.loading = true;
       this.blogs
         .getInfo(year == 'All' ? undefined : +year, page)
         .subscribe((response) => {
           this.blogsList = [...response];
-          console.log(this.blogsList);
+          this.loading = false;
+          this.blogListLength = response.length;
+          this.rest = Array.from({ length: 4 - this.blogListLength });
+          this.empty = !Boolean(this.blogListLength);
+          console.log(this.empty);
         });
     });
   }
