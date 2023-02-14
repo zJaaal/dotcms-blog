@@ -7,7 +7,7 @@ import { FilterService } from 'src/app/services/filter/filter.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  years: string[] = ['All', '2019', '2020', '2021'];
+  years: string[] = ['All', '2021', '2020', '2019'];
   constructor(private filterService: FilterService) {}
 
   handleYearChange({ target }: Event) {
