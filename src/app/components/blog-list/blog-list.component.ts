@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { BlogInfo } from 'src/app/models/blogInfo.model';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
 import { FilterService } from 'src/app/services/filter/filter.service';
@@ -35,8 +35,10 @@ export class BlogListComponent {
           this.rest = Array.from({ length: 4 - this.blogListLength });
           this.empty = !Boolean(this.blogListLength);
 
-          if (!this.empty && this.firtsRender) {
-            this.router.navigate([this.blogsList[0].id]);
+          if (this.firtsRender) {
+            if (!this.router.routerState.snapshot.url.replace('/', '').length)
+              this.router.navigate([this.blogsList[0].id]);
+
             this.firtsRender = false;
           }
         });
