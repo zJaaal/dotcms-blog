@@ -20,7 +20,7 @@ export class DotImageComponent {
 
   constructor(private builder: UrlBuilderService) {}
 
-  ngOnInit() {
+  ngOnChanges() {
     this.baseURL = this.builder.setBaseUrl(environment.API_BASE + this.src);
 
     if (this.width) this.baseURL = this.baseURL.width(this.width);
