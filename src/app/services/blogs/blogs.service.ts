@@ -10,7 +10,7 @@ import { BlogData } from 'src/app/models/blogData.model';
   providedIn: 'root',
 })
 export class BlogsService {
-  private LIMIT = environment.API_LIMIT;
+  private LIMIT = environment.ITEM_LIMIT_PER_PAGE;
 
   constructor(private http: HttpClient, private builder: UrlBuilderService) {}
 
@@ -30,9 +30,9 @@ export class BlogsService {
     }
 
     const finalURL = baseQuery
-      .orderBy('modDate desc')
       .limit(this.LIMIT)
       .offset(OFFSET)
+      .orderBy('modDate desc')
       .buildURL();
 
     //Using any because the object that the api returns is really big
