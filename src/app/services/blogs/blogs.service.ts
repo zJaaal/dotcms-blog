@@ -9,7 +9,7 @@ import { UrlBuilderService } from '../urlBuilder/url-builder.service';
   providedIn: 'root',
 })
 export class BlogsService {
-  private LIMIT = 4;
+  private LIMIT = environment.API_LIMIT;
 
   constructor(private http: HttpClient, private builder: UrlBuilderService) {}
 
