@@ -5,3 +5,11 @@ export type BlogInfoConstructor = {
   imageURL: string;
   teaser: string;
 };
+
+export type BlogDataConstructor = {
+  tags: string;
+  title: string;
+  postingDate: Date;
+  imageURL: string;
+  blogContent: any;
+};
