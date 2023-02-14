@@ -1,11 +1,12 @@
 import { BlogDataConstructor } from './types';
 
 export class BlogData {
-  tags: string;
+  tags: [] | undefined;
   title: string;
   postingDate: Date;
   imageURL: string;
   blogContent: any;
+  author: string;
 
   constructor({
     tags,
@@ -13,11 +14,13 @@ export class BlogData {
     postingDate,
     imageURL,
     blogContent,
+    author,
   }: BlogDataConstructor) {
     this.tags = tags;
     this.title = title;
     this.postingDate = new Date(postingDate);
     this.imageURL = imageURL;
     this.blogContent = blogContent;
+    this.author = author;
   }
 }

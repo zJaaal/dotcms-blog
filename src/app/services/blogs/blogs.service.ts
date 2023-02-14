@@ -59,14 +59,14 @@ export class BlogsService {
     return this.http.get(url).pipe(
       map((response: any) => {
         let data = response.contentlets[0];
-
         return data
           ? new BlogData({
-              tags: data.tags,
+              tags: data.tags?.replace(new RegExp(':|,', 'g'), ' ').split(' '),
               title: data.title,
               postingDate: data.postingDate,
               imageURL: data.image,
               blogContent: data.blogContent,
+              author: data.modUserName,
             })
           : undefined;
       })
