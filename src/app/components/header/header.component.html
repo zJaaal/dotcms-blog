@@ -3,7 +3,7 @@
   <div class="select-container">
     <select class="select" (change)="handleYearChange($event)">
       <option disabled>select a year</option>
-      <option *ngFor="let year of years; let i = index">{{ year }}</option>
+      <option *ngFor="let year of years">{{ year }}</option>
     </select>
   </div>
 </header>
