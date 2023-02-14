@@ -9,6 +9,7 @@ import { BlogListComponent } from './components/blog-list/blog-list.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { BlogItemComponent } from './components/blog-list/components/blog-item/blog-item.component';
 import { DotImageComponent } from './components/dot-image/dot-image.component';
+import { PaginationComponent } from './components/blog-list/components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { DotImageComponent } from './components/dot-image/dot-image.component';
     BlogComponent,
     BlogItemComponent,
     DotImageComponent,
+    PaginationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

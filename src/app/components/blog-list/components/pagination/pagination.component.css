@@ -1,0 +1,17 @@
+.page-container {
+  padding-top: 15px;
+}
+
+.arrow-icon {
+  padding-left: 10px;
+  padding-right: 10px;
+  color: var(--secondary)
+}
+
+.disabled-icon {
+  color: grey;
+}
+
+.page {
+  color: white;
+}
