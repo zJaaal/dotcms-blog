@@ -3,4 +3,7 @@
   *ngFor="let blogData of blogsList"
   [blogData]="blogData"
 ></app-blog-item>
-<div class="flex-1 d-flex page-container">xd</div>
+<app-pagination
+  [listLength]="blogsList.length"
+  class="flex-1 d-flex page-container align-items-start justify-content-center"
+></app-pagination>
