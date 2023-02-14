@@ -39,7 +39,6 @@ export class BlogsService {
       map((response: any) =>
         response.contentlets
           ? response.contentlets.map((post: any) => {
-              // return post;
               return new BlogInfo({
                 id: post.identifier,
                 title: post.title,

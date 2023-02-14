@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { YearService } from 'src/app/services/year/year.service';
+import { FilterService } from 'src/app/services/filter/filter.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +8,12 @@ import { YearService } from 'src/app/services/year/year.service';
 })
 export class HeaderComponent {
   years: string[] = ['All', '2019', '2020', '2021'];
-  constructor(private yearService: YearService) {}
+  constructor(private filterService: FilterService) {}
 
   handleYearChange({ target }: Event) {
-    this.yearService.setCurrentYear((target as HTMLSelectElement).value);
+    this.filterService.setCurrentFilter({
+      page: 1,
+      year: (target as HTMLSelectElement).value,
+    });
   }
 }

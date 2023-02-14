@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BlogInfo } from 'src/app/models/blogInfo.model';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
-import { YearService } from 'src/app/services/year/year.service';
+import { FilterService } from 'src/app/services/filter/filter.service';
 
 @Component({
   selector: 'app-blog-list',
@@ -11,12 +11,15 @@ import { YearService } from 'src/app/services/year/year.service';
 export class BlogListComponent {
   blogsList: BlogInfo[] = [];
 
-  constructor(private blogs: BlogsService, private yearService: YearService) {}
+  constructor(
+    private blogs: BlogsService,
+    private filterService: FilterService
+  ) {}
 
   ngOnInit() {
-    this.yearService.currentYear.subscribe((year) => {
+    this.filterService.currentFilter.subscribe(({ year, page }) => {
       this.blogs
-        .getInfo(year == 'All' ? undefined : +year)
+        .getInfo(year == 'All' ? undefined : +year, page)
         .subscribe((response) => {
           this.blogsList = [...response];
           console.log(this.blogsList);
