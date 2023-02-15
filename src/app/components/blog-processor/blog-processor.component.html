@@ -1,0 +1,33 @@
+<ng-container *ngFor="let content of blogContent.content">
+  <ng-container [ngSwitch]="content.type">
+    <div *ngSwitchCase="'paragraph'" class="mb-2 mt-2">
+      <app-paragraph [attrs]="content.attrs">
+        <p app-blog-processor [blogContent]="content"></p>
+      </app-paragraph>
+    </div>
+    <app-text
+      *ngSwitchCase="'text'"
+      [marks]="content.marks"
+      [text]="content.text"
+    ></app-text>
+    <div class="mb-4 mt-4" *ngSwitchCase="'heading'">
+      <app-heading [attrs]="content.attrs">
+        <span app-blog-processor [blogContent]="content"></span>
+      </app-heading>
+    </div>
+    <div
+      class="d-flex justify-content-center mb-4 mt-4"
+      *ngSwitchCase="'dotImage'"
+    >
+      <app-dot-image
+        [src]="content.attrs.data.asset"
+        [height]="200"
+        [width]="400"
+        [alt]="content.attrs.data.title"
+      ></app-dot-image>
+    </div>
+    <div class="debug-red" *ngSwitchDefault>
+      This component is not supported {{ content.type }}
+    </div>
+  </ng-container>
+</ng-container>
