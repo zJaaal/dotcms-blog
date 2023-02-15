@@ -70,7 +70,8 @@
       *ngSwitchCase="'dotContent'"
       [data]="content.attrs.data"
     ></app-dot-content>
-
-    <app-default [type]="content.type" *ngSwitchDefault> </app-default>
+    <ng-container *ngIf="!production">
+      <app-default [type]="content.type" *ngSwitchDefault> </app-default>
+    </ng-container>
   </ng-container>
 </ng-container>

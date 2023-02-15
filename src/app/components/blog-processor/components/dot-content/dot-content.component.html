@@ -4,5 +4,7 @@
     *ngSwitchCase="'Destination'"
     [destination]="data"
   ></app-destination>
-  <app-default [type]="data.contentType" *ngSwitchDefault> </app-default>
+  <div *ngIf="!production">
+    <app-default [type]="data.contentType" *ngSwitchDefault> </app-default>
+  </div>
 </ng-container>
