@@ -2,7 +2,7 @@
   class="d-flex flex-column flex-1 blog-container"
   *ngIf="data$ | async as blogData"
 >
-  <div class="d-flex">
+  <div class="d-flex flex-wrap">
     <app-dot-image
       [src]="blogData.imageURL"
       [width]="300"
