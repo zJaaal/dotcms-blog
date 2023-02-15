@@ -7,11 +7,4 @@ import { Component, Input } from '@angular/core';
 })
 export class BlogProcessorComponent {
   @Input() blogContent?: any;
-
-  ngOnInit() {
-    console.log(this.blogContent);
-  }
-  // ngOnChanges() {
-  //   console.log(this.blogContent);
-  // }
 }

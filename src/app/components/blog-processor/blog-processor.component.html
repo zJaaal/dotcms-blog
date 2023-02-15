@@ -66,8 +66,11 @@
       app-blog-processor
     ></td>
 
-    <div class="debug-red" *ngSwitchDefault>
-      This component is not supported {{ content.type }}
-    </div>
+    <app-dot-content
+      *ngSwitchCase="'dotContent'"
+      [data]="content.attrs.data"
+    ></app-dot-content>
+
+    <app-default [type]="content.type" *ngSwitchDefault> </app-default>
   </ng-container>
 </ng-container>
