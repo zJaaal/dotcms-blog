@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dot-content',
@@ -7,4 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class DotContentComponent {
   @Input() data: any = {};
+  production: boolean = environment.PRODUCTION;
 }

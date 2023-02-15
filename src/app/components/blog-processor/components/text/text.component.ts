@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { Link, Marks } from 'src/app/models/types';
 
 @Component({
   selector: 'app-text',
   template: `<a
       [class]="classes"
-      [href]="link.attrs.href"
-      [target]="link.attrs.target"
+      [href]="link.href"
+      [target]="link.target"
       *ngIf="link"
       >{{ text }}</a
     >
@@ -15,9 +16,9 @@ import { Component, Input } from '@angular/core';
 })
 export class TextComponent {
   @Input() text: string = '';
-  @Input() marks: any[] = [];
+  @Input() marks: Marks[] = [];
 
-  link: any = undefined;
+  link?: Link = undefined;
   classes: string = '';
   ngOnInit() {
     this.classes =
@@ -26,6 +27,6 @@ export class TextComponent {
         .map(({ type }) => type)
         .join(' ') || '';
 
-    this.link = this.marks?.find(({ type }) => type == 'link');
+    this.link = this.marks?.find(({ type }) => type == 'link')?.attrs as Link;
   }
 }

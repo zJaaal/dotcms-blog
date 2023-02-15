@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: '[app-blog-processor]',
@@ -7,4 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class BlogProcessorComponent {
   @Input() blogContent?: any;
+  production: boolean = environment.PRODUCTION;
 }

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Destination } from 'src/app/models/types';
 
 @Component({
   selector: 'app-destination',
@@ -6,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./destination.component.css'],
 })
 export class DestinationComponent {
-  @Input() destination: any = {};
+  @Input() destination!: Destination;
   imageSrc: string = '';
   ngOnInit() {
     this.imageSrc = '/dA/' + this.destination.imageContentAsset;

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Product } from 'src/app/models/types';
 
 @Component({
   selector: 'app-product',
@@ -6,10 +7,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./product.component.css'],
 })
 export class ProductComponent {
-  @Input() product: any = {};
+  @Input() product!: Product;
   specifications: Array<Array<string>> = [];
 
   ngOnInit() {
-    this.specifications = Object.entries(this.product?.specifications1);
+    this.specifications = this.product.specifications1
+      ? Object.entries(this.product.specifications1)
+      : [];
   }
 }

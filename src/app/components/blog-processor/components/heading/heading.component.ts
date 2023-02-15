@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { HeadingAttributes } from 'src/app/models/types';
 
 @Component({
   selector: 'app-heading',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./heading.component.css'],
 })
 export class HeadingComponent {
-  @Input() attrs: any = {};
+  @Input() attrs!: HeadingAttributes;
 }
