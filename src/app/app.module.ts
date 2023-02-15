@@ -15,7 +15,6 @@ import { BlogProcessorComponent } from './components/blog-processor/blog-process
 import { ParagraphComponent } from './components/blog-processor/components/paragraph/paragraph.component';
 import { TextComponent } from './components/blog-processor/components/text/text.component';
 import { HeadingComponent } from './components/blog-processor/components/heading/heading.component';
-import { BulletListComponent } from './components/blog-processor/components/bullet-list/bullet-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +30,6 @@ import { BulletListComponent } from './components/blog-processor/components/bull
     ParagraphComponent,
     TextComponent,
     HeadingComponent,
-    BulletListComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
