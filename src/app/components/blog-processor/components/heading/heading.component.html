@@ -1,0 +1,22 @@
+<ng-container [ngSwitch]="attrs.level">
+  <h1 *ngSwitchCase="1" [ngStyle]="{ 'text-align': attrs.textAlign }">
+    <ng-container *ngTemplateOutlet="content"> </ng-container>
+  </h1>
+  <h2 *ngSwitchCase="2" [ngStyle]="{ 'text-align': attrs.textAlign }">
+    <ng-container *ngTemplateOutlet="content"> </ng-container>
+  </h2>
+  <h3 *ngSwitchCase="3" [ngStyle]="{ 'text-align': attrs.textAlign }">
+    <ng-container *ngTemplateOutlet="content"> </ng-container>
+  </h3>
+  <h4 *ngSwitchCase="4" [ngStyle]="{ 'text-align': attrs.textAlign }">
+    <ng-container *ngTemplateOutlet="content"> </ng-container>
+  </h4>
+  <h5 *ngSwitchCase="5" [ngStyle]="{ 'text-align': attrs.textAlign }">
+    <ng-container *ngTemplateOutlet="content"> </ng-container>
+  </h5>
+  <p *ngSwitchDefault>
+    Looks like this level is not supported: {{ attrs.level }}
+  </p>
+</ng-container>
+
+<ng-template #content><ng-content></ng-content></ng-template>
