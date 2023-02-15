@@ -1,8 +1,12 @@
 <ng-container *ngFor="let content of blogContent.content">
   <ng-container [ngSwitch]="content.type">
-    <app-paragraph *ngSwitchCase="'paragraph'" [attrs]="content.attrs">
-      <p [blogContent]="content" app-blog-processor></p>
-    </app-paragraph>
+    <div *ngSwitchCase="'paragraph'" class="mb-2 mt-2">
+      <p
+        [blogContent]="content"
+        [ngStyle]="{ 'text-align': content.attrs.textAlign }"
+        app-blog-processor
+      ></p>
+    </div>
 
     <app-text
       *ngSwitchCase="'text'"

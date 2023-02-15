@@ -12,7 +12,6 @@ import { DotImageComponent } from './components/dot-image/dot-image.component';
 import { PaginationComponent } from './components/blog-list/components/pagination/pagination.component';
 import { TagComponent } from './components/blog/tag/tag.component';
 import { BlogProcessorComponent } from './components/blog-processor/blog-processor.component';
-import { ParagraphComponent } from './components/blog-processor/components/paragraph/paragraph.component';
 import { TextComponent } from './components/blog-processor/components/text/text.component';
 import { HeadingComponent } from './components/blog-processor/components/heading/heading.component';
 
@@ -27,7 +26,6 @@ import { HeadingComponent } from './components/blog-processor/components/heading
     PaginationComponent,
     TagComponent,
     BlogProcessorComponent,
-    ParagraphComponent,
     TextComponent,
     HeadingComponent,
   ],
