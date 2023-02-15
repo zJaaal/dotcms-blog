@@ -8,8 +8,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./pagination.component.css'],
 })
 export class PaginationComponent {
-  @Input() listLength!: number;
-  @Input() empty!: boolean;
+  @Input() listLength: number = 0;
+  @Input() empty: boolean = false;
 
   maxSafeInteger = Number.MAX_SAFE_INTEGER;
 
@@ -23,19 +23,24 @@ export class PaginationComponent {
     });
   }
 
+  //No total items on the endpoint, this just try to handle pagination without knowing the total items
+  //This needs a hard fix using the total items
   ngOnChanges(changes: SimpleChanges) {
+    //To reset the maxPage when going from an empty list to a full list
     if (
       changes['listLength'].currentValue > 0 &&
-      this.listLength == environment.API_LIMIT
+      this.listLength == environment.ITEM_LIMIT_PER_PAGE
     ) {
       this.maxPage = this.maxSafeInteger;
     }
+    //If the page has less than the item limit per page then is the last page
     if (
       changes['listLength'].currentValue > 0 &&
-      this.listLength < environment.API_LIMIT
+      this.listLength < environment.ITEM_LIMIT_PER_PAGE
     ) {
       this.maxPage = this.page;
     }
+    //This is to prevent the user from going too far away and get lost in the infinite nothingness
     if (
       changes['listLength'].currentValue == 0 &&
       changes['listLength'].previousValue > 0 &&

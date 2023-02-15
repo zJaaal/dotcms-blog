@@ -12,6 +12,10 @@
   flex-direction: row;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 /* flex spacing */
 
 .flex-1 {

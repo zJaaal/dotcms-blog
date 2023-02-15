@@ -10,6 +10,14 @@ import { BlogComponent } from './components/blog/blog.component';
 import { BlogItemComponent } from './components/blog-list/components/blog-item/blog-item.component';
 import { DotImageComponent } from './components/dot-image/dot-image.component';
 import { PaginationComponent } from './components/blog-list/components/pagination/pagination.component';
+import { TagComponent } from './components/tag/tag.component';
+import { BlogProcessorComponent } from './components/blog-processor/blog-processor.component';
+import { TextComponent } from './components/blog-processor/components/text/text.component';
+import { HeadingComponent } from './components/blog-processor/components/heading/heading.component';
+import { DotContentComponent } from './components/blog-processor/components/dot-content/dot-content.component';
+import { ProductComponent } from './components/blog-processor/components/dot-content/components/product/product.component';
+import { DefaultComponent } from './components/blog-processor/components/default/default.component';
+import { DestinationComponent } from './components/blog-processor/components/dot-content/components/destination/destination.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +28,14 @@ import { PaginationComponent } from './components/blog-list/components/paginatio
     BlogItemComponent,
     DotImageComponent,
     PaginationComponent,
+    TagComponent,
+    BlogProcessorComponent,
+    TextComponent,
+    HeadingComponent,
+    DotContentComponent,
+    ProductComponent,
+    DefaultComponent,
+    DestinationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

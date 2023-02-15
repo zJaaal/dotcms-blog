@@ -4,12 +4,13 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
 import { BlogInfo } from '../../models/blogInfo.model';
 import { UrlBuilderService } from '../urlBuilder/url-builder.service';
+import { BlogData } from 'src/app/models/blogData.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BlogsService {
-  private LIMIT = environment.API_LIMIT;
+  private LIMIT = environment.ITEM_LIMIT_PER_PAGE;
 
   constructor(private http: HttpClient, private builder: UrlBuilderService) {}
 
@@ -29,9 +30,9 @@ export class BlogsService {
     }
 
     const finalURL = baseQuery
-      .orderBy('modDate desc')
       .limit(this.LIMIT)
       .offset(OFFSET)
+      .orderBy('modDate desc')
       .buildURL();
 
     //Using any because the object that the api returns is really big
@@ -55,8 +56,20 @@ export class BlogsService {
   getBlog(id: string) {
     let url = environment.API_BASE_ID_URL.replace('IDENTIFIER', id);
 
-    return this.http
-      .get(url)
-      .pipe(map((response: any) => response.contentlets[0]));
+    return this.http.get(url).pipe(
+      map((response: any) => {
+        let data = response.contentlets[0];
+        return data
+          ? new BlogData({
+              tags: data.tags?.replace(new RegExp(':|,', 'g'), ' ').split(' '),
+              title: data.title,
+              postingDate: data.postingDate,
+              imageURL: data.image,
+              blogContent: data.blogContent,
+              author: data.modUserName,
+            })
+          : undefined;
+      })
+    );
   }
 }

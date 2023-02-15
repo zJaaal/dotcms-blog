@@ -1,0 +1,14 @@
+<div class="d-flex flex-column mb-4 mt-4">
+  <div class="d-flex w-100 mb-4 pl-2 align-items-center">
+    <app-dot-image
+      [src]="imageSrc"
+      [width]="100"
+      [height]="100"
+      [alt]="destination.title"
+    ></app-dot-image>
+    <div class="pl-4">
+      <p class="pb-2">{{ destination.title }}</p>
+      <p>{{ destination.seodescription }}</p>
+    </div>
+  </div>
+</div>
