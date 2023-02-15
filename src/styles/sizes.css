@@ -16,6 +16,8 @@
 
 /* Spacing */
 
+/* Padding */
+
 .pt-1 {
   padding-top: var(--spacing);
 }
@@ -55,6 +57,49 @@
 .p-2 {
   padding: calc(2 *var(--spacing));
 }
+
+.pt-3 {
+  padding-top: calc(3 *var(--spacing));
+}
+
+.pb-3 {
+  padding-bottom: calc(3 *var(--spacing));
+}
+
+.pl-3 {
+  padding-left: calc(3 *var(--spacing));
+}
+
+.pr-3 {
+  padding-right: calc(3 *var(--spacing));
+}
+
+.p-3 {
+  padding: calc(3 *var(--spacing));
+}
+
+.pt-4 {
+  padding-top: calc(4 *var(--spacing));
+}
+
+.pb-4 {
+  padding-bottom: calc(4 *var(--spacing));
+}
+
+.pl-4 {
+  padding-left: calc(4 *var(--spacing));
+}
+
+.pr-4 {
+  padding-right: calc(4 *var(--spacing));
+}
+
+.p-4 {
+  padding: calc(4 *var(--spacing));
+}
+
+
+/* Margin  */
 
 .mt-1 {
   margin-top: var(--spacing);
