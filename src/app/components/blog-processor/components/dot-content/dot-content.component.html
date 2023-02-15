@@ -1,0 +1,8 @@
+<ng-container [ngSwitch]="data.contentType">
+  <app-product *ngSwitchCase="'Product'" [product]="data"></app-product>
+  <app-destination
+    *ngSwitchCase="'Destination'"
+    [destination]="data"
+  ></app-destination>
+  <app-default [type]="data.contentType" *ngSwitchDefault> </app-default>
+</ng-container>
