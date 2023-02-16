@@ -20,7 +20,7 @@ export class UrlBuilderService {
    * @returns URLBuilder
    */
   baseUrl(url: string) {
-    this.queryString = '/query/';
+    this.queryString = '';
     this.paramsString = '';
     this.imageString = '';
 
@@ -37,7 +37,9 @@ export class UrlBuilderService {
     if (!this.baseUrlString.length) throw new Error("There's no url to build");
 
     if (typeof query == 'string') {
-      this.queryString += ' ' + query;
+      this.queryString += this.queryString.includes('/query/')
+        ? ' ' + query
+        : '/query/ ' + query;
     } else {
       this.queryString += environment.DATE_QUERY_TEMPLATE.replace(
         new RegExp('QUERY|FROMTIME|TOTIME', 'g'),
@@ -61,6 +63,18 @@ export class UrlBuilderService {
   param(key: string, value: string | number) {
     if (!this.baseUrlString.length) throw new Error("There's no url to build");
     this.paramsString += `/${key}/${value}`;
+    return this;
+  }
+
+  /**
+   * @description You can set query using a raw string
+   * @param params string
+   * @returns URLBuilder
+   */
+  raw(params: string) {
+    if (!this.baseUrlString.length) throw new Error("There's no url to build");
+    this.paramsString += params;
+
     return this;
   }
 
