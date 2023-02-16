@@ -30,7 +30,9 @@ export class DotImageComponent {
   }
 
   onError(e: Event) {
-    (e.target as HTMLImageElement).src =
-      this.fallbackSrc + `${this.width}x${this.height}/110B36%20?text=dotCMS`;
+    (e.target as HTMLImageElement).src = this.builder
+      .baseUrl(this.fallbackSrc)
+      .raw(`${this.width}x${this.height}/110B36 ?text=dotCMS`)
+      .buildURL();
   }
 }
