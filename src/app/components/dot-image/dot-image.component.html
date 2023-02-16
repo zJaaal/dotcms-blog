@@ -1,1 +1,6 @@
-<img [src]="finalSRC" [alt]="alt" [ngStyle]="imgStyles" />
+<img
+  [src]="finalSRC"
+  [alt]="alt"
+  [ngStyle]="imgStyles"
+  (error)="onError($event)"
+/>

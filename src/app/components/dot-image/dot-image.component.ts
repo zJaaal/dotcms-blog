@@ -16,6 +16,7 @@ export class DotImageComponent {
   @Input() imgStyles?: Record<string, string>;
 
   finalSRC: string = '';
+  fallbackSrc: string = environment.IMAGE_FALLBACK_URL;
 
   constructor(private builder: UrlBuilderService) {}
 
@@ -26,5 +27,10 @@ export class DotImageComponent {
     if (this.height) this.builder = this.builder.height(this.height);
 
     this.finalSRC = this.builder.buildImgURL(this.format);
+  }
+
+  onError(e: Event) {
+    (e.target as HTMLImageElement).src =
+      this.fallbackSrc + `${this.width}x${this.height}/110B36%20?text=dotCMS`;
   }
 }

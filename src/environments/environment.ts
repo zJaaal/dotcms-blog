@@ -5,4 +5,5 @@ export const environment = {
   DATE_QUERY_TEMPLATE: ' QUERY:[FROMTIME140000 TO TOTIME160000]',
   ITEM_LIMIT_PER_PAGE: 4,
   PRODUCTION: false,
+  IMAGE_FALLBACK_URL: 'https://placeholder.com/',
 };
