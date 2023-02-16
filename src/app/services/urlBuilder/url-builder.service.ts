@@ -6,7 +6,11 @@ import { QueryTypes } from './types';
   providedIn: 'root',
 })
 export class UrlBuilderService {
-  private baseUrl: string = '';
+  private baseUrlString: string = '';
+
+  private queryString: string = '/query/';
+  private paramsString: string = '';
+  private imageString: string = '';
 
   constructor() {}
 
@@ -15,8 +19,12 @@ export class UrlBuilderService {
    * @param url
    * @returns URLBuilder
    */
-  setBaseUrl(url: string) {
-    this.baseUrl = url;
+  baseUrl(url: string) {
+    this.queryString = '/query/';
+    this.paramsString = '';
+    this.imageString = '';
+
+    this.baseUrlString = url;
     return this;
   }
 
@@ -26,14 +34,12 @@ export class UrlBuilderService {
    * @returns URLBuilder
    */
   query(query: QueryTypes) {
-    if (!this.baseUrl.length) throw new Error("There's no url to build");
+    if (!this.baseUrlString.length) throw new Error("There's no url to build");
 
     if (typeof query == 'string') {
-      this.baseUrl += !this.baseUrl.includes('query')
-        ? '/query/' + query
-        : ' ' + query;
+      this.queryString += ' ' + query;
     } else {
-      this.baseUrl += environment.DATE_QUERY_TEMPLATE.replace(
+      this.queryString += environment.DATE_QUERY_TEMPLATE.replace(
         new RegExp('QUERY|FROMTIME|TOTIME', 'g'),
         (match) => {
           if (match == 'QUERY') return query.luceneQuery;
@@ -47,37 +53,14 @@ export class UrlBuilderService {
   }
 
   /**
-   * @description You can set limit with this method
-   * @param limit number
+   * @description You can set query params using a key and a value
+   * @param key string
+   * @param value number|string
    * @returns URLBuilder
    */
-  limit(limit: number) {
-    if (!this.baseUrl.length) throw new Error("There's no url to build");
-    this.baseUrl += '/limit/' + limit;
-
-    return this;
-  }
-
-  /**
-   * @description You can set offset with this method
-   * @param offset number
-   * @returns URLBuilder
-   */
-  offset(offset: number) {
-    if (!this.baseUrl.length) throw new Error("There's no url to build");
-    this.baseUrl += '/offset/' + offset;
-
-    return this;
-  }
-
-  /**
-   * @description You can set an oderby query with this method
-   * @param query string
-   * @returns URLBuilder
-   */
-  orderBy(query: string) {
-    if (!this.baseUrl.length) throw new Error("There's no url to build");
-    this.baseUrl += '/orderby/' + query;
+  param(key: string, value: string | number) {
+    if (!this.baseUrlString.length) throw new Error("There's no url to build");
+    this.paramsString += `/${key}/${value}`;
     return this;
   }
 
@@ -87,8 +70,8 @@ export class UrlBuilderService {
    * @returns URLBuilder
    */
   width(width: number) {
-    if (!this.baseUrl.length) throw new Error("There's no url to build");
-    this.baseUrl += `/${width}w`;
+    if (!this.baseUrlString.length) throw new Error("There's no url to build");
+    this.imageString += `/${width}w`;
     return this;
   }
   /**
@@ -97,8 +80,8 @@ export class UrlBuilderService {
    * @returns URLBuilder
    */
   height(height: number) {
-    if (!this.baseUrl.length) throw new Error("There's no url to build");
-    this.baseUrl += `/${height}h`;
+    if (!this.baseUrlString.length) throw new Error("There's no url to build");
+    this.imageString += `/${height}h`;
 
     return this;
   }
@@ -109,8 +92,12 @@ export class UrlBuilderService {
    * @returns URL
    */
   buildImgURL(format: string = 'webp') {
-    if (!this.baseUrl.length) throw new Error("There's no url to build");
-    return encodeURI(this.baseUrl + `/${format}`);
+    if (!this.baseUrlString.length) throw new Error("There's no url to build");
+    let result = encodeURI(
+      this.baseUrlString + this.imageString + `/${format}`
+    );
+
+    return result;
   }
 
   /**
@@ -118,7 +105,12 @@ export class UrlBuilderService {
    * @returns URL
    */
   buildURL() {
-    if (!this.baseUrl.length) throw new Error("There's no url to build");
-    return encodeURI(this.baseUrl);
+    if (!this.baseUrlString.length) throw new Error("There's no url to build");
+
+    let result = encodeURI(
+      this.baseUrlString + this.queryString + this.paramsString
+    );
+
+    return result;
   }
 }

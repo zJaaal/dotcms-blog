@@ -18,7 +18,7 @@ export class BlogsService {
     let OFFSET = this.LIMIT * (page - 1);
 
     let baseQuery = this.builder
-      .setBaseUrl(environment.API_BASE_QUERY_URL)
+      .baseUrl(environment.API_BASE_QUERY_URL)
       .query('+ContentType:Blog');
 
     if (year) {
@@ -30,9 +30,9 @@ export class BlogsService {
     }
 
     const finalURL = baseQuery
-      .limit(this.LIMIT)
-      .offset(OFFSET)
-      .orderBy('modDate desc')
+      .param('limit', this.LIMIT)
+      .param('offset', OFFSET)
+      .param('orderby', 'modDate desc')
       .buildURL();
 
     //Using any because the object that the api returns is really big
