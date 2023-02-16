@@ -41,12 +41,15 @@ export class PaginationComponent {
       this.maxPage = this.page;
     }
     //This is to prevent the user from going too far away and get lost in the infinite nothingness
+    //Because it will cross a boundary that i don't handle since it has a lot of logic
     if (
       changes['listLength'].currentValue == 0 &&
       changes['listLength'].previousValue > 0 &&
       this.page > 1
     ) {
       --this.page;
+
+      //This also generates an error in angular
       this.filterService.setCurrentFilter({
         ...this.filterService.getCurrentFilter(),
         page: this.page,
@@ -54,7 +57,7 @@ export class PaginationComponent {
       this.maxPage = this.page;
     }
   }
-
+  //Don't really like this but it's what i had to do to make it work
   handleChange(type: string) {
     if (this.empty) return;
     if (type == 'INCREMENT' && this.page == this.maxPage) return;
