@@ -15,17 +15,19 @@ export class DotImageComponent {
   @Input() alt?: string;
   @Input() imgStyles?: Record<string, string>;
 
-  baseURL!: UrlBuilderService;
   finalSRC: string = '';
 
   constructor(private builder: UrlBuilderService) {}
 
   ngOnChanges() {
-    this.baseURL = this.builder.setBaseUrl(environment.API_BASE + this.src);
+    //We need to be sure that the fields are cleaned
+    this.builder.destroy();
 
-    if (this.width) this.baseURL = this.baseURL.width(this.width);
-    if (this.height) this.baseURL = this.baseURL.height(this.height);
+    this.builder = this.builder.baseUrl(environment.API_BASE + this.src);
 
-    this.finalSRC = this.baseURL.buildImgURL(this.format);
+    if (this.width) this.builder = this.builder.width(this.width);
+    if (this.height) this.builder = this.builder.height(this.height);
+
+    this.finalSRC = this.builder.buildImgURL(this.format);
   }
 }
