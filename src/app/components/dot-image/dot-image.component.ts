@@ -20,9 +20,6 @@ export class DotImageComponent {
   constructor(private builder: UrlBuilderService) {}
 
   ngOnChanges() {
-    //We need to be sure that the fields are cleaned
-    this.builder.destroy();
-
     this.builder = this.builder.baseUrl(environment.API_BASE + this.src);
 
     if (this.width) this.builder = this.builder.width(this.width);

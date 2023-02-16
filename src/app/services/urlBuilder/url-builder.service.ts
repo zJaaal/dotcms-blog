@@ -20,6 +20,10 @@ export class UrlBuilderService {
    * @returns URLBuilder
    */
   baseUrl(url: string) {
+    this.queryString = '/query/';
+    this.paramsString = '';
+    this.imageString = '';
+
     this.baseUrlString = url;
     return this;
   }
@@ -108,14 +112,5 @@ export class UrlBuilderService {
     );
 
     return result;
-  }
-
-  /**
-   * @description This function resets the class to be use again by another url
-   */
-  destroy() {
-    this.queryString = '/query/';
-    this.paramsString = '';
-    this.imageString = '';
   }
 }

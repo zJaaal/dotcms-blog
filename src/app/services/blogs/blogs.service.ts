@@ -35,9 +35,6 @@ export class BlogsService {
       .param('orderby', 'modDate desc')
       .buildURL();
 
-    //After we use the builder we reset it
-    this.builder.destroy();
-
     //Using any because the object that the api returns is really big
     return this.http.get(finalURL).pipe(
       map((response: any) =>
