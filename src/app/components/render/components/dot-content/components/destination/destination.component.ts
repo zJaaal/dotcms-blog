@@ -4,7 +4,6 @@ import { Destination } from 'src/app/models/Destination.model';
 @Component({
   selector: 'app-destination',
   templateUrl: './destination.component.html',
-  styleUrls: ['./destination.component.css'],
 })
 export class DestinationComponent {
   @Input() destination!: Destination;
