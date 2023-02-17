@@ -46,7 +46,7 @@ export class BlogsService {
   }
 
   getBlogList(year?: number, page: number = 0): Observable<BlogDataResponse> {
-    const index = page && Math.abs(page * this.LIMIT - 1);
+    const index = page && Math.abs(page * this.LIMIT);
 
     return this.currentSubject.pipe(
       map((response) =>
