@@ -19,24 +19,32 @@ export class BlogsService {
 
   getAllData(): void {
     this.http
-      .get(environment.API_BASE_QUERY_URL)
+      .get<BlogData>(environment.API_BASE_QUERY_URL)
       .pipe(
         map(({ contentlets = [] }: any) =>
-          contentlets.map(
-            (post: APIResponse) =>
-              ({
-                id: post.identifier,
-                title: post.title,
-                postingDate: post.postingDate,
-                imageURL: post.image,
-                teaser: post.teaser,
-                tags: post.tags
-                  ?.replace(new RegExp(':[A-Z]+,|,', 'gi'), ' ')
-                  .split(' '),
-                author: post.modUserName,
-                blogContent: post.blogContent,
-              } as BlogData)
-          )
+          contentlets.map((post: APIResponse) => {
+            const {
+              tags,
+              image,
+              title,
+              teaser,
+              identifier,
+              modUserName,
+              postingDate,
+              blogContent,
+            } = post;
+
+            return {
+              title,
+              teaser,
+              postingDate,
+              blogContent,
+              id: identifier,
+              imageURL: image,
+              author: modUserName,
+              tags: tags?.split(new RegExp(':[A-Z]+,|,', 'gi')),
+            };
+          })
         )
       )
       .subscribe((data) => {
