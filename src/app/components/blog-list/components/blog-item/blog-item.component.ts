@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BlogInfo } from 'src/app/models/blogInfo.model';
+import { BlogData } from 'src/app/models/BlogData.model';
 
 @Component({
   selector: 'app-blog-item',
@@ -7,7 +7,7 @@ import { BlogInfo } from 'src/app/models/blogInfo.model';
   styleUrls: ['./blog-item.component.css'],
 })
 export class BlogItemComponent {
-  @Input() blogData!: BlogInfo;
+  @Input() blogData!: BlogData;
 
   constructor() {}
 }

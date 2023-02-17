@@ -1,9 +1,17 @@
 .image-container {
-  width: 50%;
+  flex: 2;
   height: 100%;
+}
+
+.info-container {
+  flex: 1;
 }
 
 .container {
   height: 250px;
   width: 100%;
+}
+
+.tag-container {
+  gap: 5px
 }

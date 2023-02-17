@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center align-items-center">
   <i
     class="fa-sharp fa-solid fa-circle-arrow-left fa-lg arrow-icon pointer"
-    [ngClass]="{ disabled: page == 1 || empty }"
+    [ngClass]="{ disabled: page == 1 || state != 'COMPLETED' }"
     (click)="handleChange('DECREMENT')"
   ></i>
   <p class="page">
@@ -9,7 +9,7 @@
   </p>
   <i
     class="fa-sharp fa-solid fa-circle-arrow-right fa-lg arrow-icon pointer"
-    [ngClass]="{ disabled: maxPage != maxSafeInteger || empty }"
+    [ngClass]="{ disabled: page == maxPage || state != 'COMPLETED' }"
     (click)="handleChange('INCREMENT')"
   ></i>
 </div>

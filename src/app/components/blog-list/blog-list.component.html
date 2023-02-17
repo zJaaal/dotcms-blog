@@ -4,7 +4,4 @@
     [blogData]="blogData"
   ></app-blog-item>
 </div>
-<app-pagination
-  [listLength]="blogsList.length"
-  [empty]="empty"
-></app-pagination>
+<app-pagination [maxPage]="maxPage" [state]="state"></app-pagination>

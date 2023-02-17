@@ -1,8 +1,10 @@
 <div class="d-flex container">
   <div class="image-container">
-    <app-dot-image [src]="blogData.imageURL"></app-dot-image>
+    <app-dot-image
+      [contentlet]="{ src: blogData.imageURL, alt: blogData.title }"
+    ></app-dot-image>
   </div>
-  <div class="d-flex flex-column justify-content-space-between pl-4">
+  <div class="d-flex flex-column pl-4 info-container">
     <div>
       <h2>{{ blogData.title }}</h2>
       <p class="pt-2">
@@ -10,12 +12,11 @@
       </p>
       <p class="pt-1">Author: {{ blogData.author }}</p>
     </div>
-    <div *ngIf="blogData.tags as tags" class="d-flex flex-wrap">
-      <app-tag
-        class="pt-2 pr-2"
-        *ngFor="let tag of tags"
-        [tagString]="tag"
-      ></app-tag>
+    <div
+      *ngIf="blogData.tags as tags"
+      class="d-flex flex-wrap tag-container pt-3"
+    >
+      <app-tag *ngFor="let tag of tags" [tagString]="tag"></app-tag>
     </div>
   </div>
 </div>

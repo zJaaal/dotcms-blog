@@ -12,7 +12,7 @@ export class HeaderComponent {
 
   handleYearChange({ target }: Event) {
     this.filterService.setCurrentFilter({
-      page: 1,
+      page: 0,
       year: (target as HTMLSelectElement).value,
     });
   }

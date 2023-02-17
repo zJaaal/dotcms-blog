@@ -7,6 +7,6 @@
         <p class="info-hover">{{blogData.teaser}}</p>
     </div>
     <div class="image-container">
-       <app-dot-image [src]="blogData.imageURL" [alt]="blogData.title"/>
+       <app-dot-image [contentlet]="{src: blogData.imageURL, alt: blogData.title}"/>
     </div>
 </div>

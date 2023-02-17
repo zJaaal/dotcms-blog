@@ -1,8 +1,12 @@
 export interface BlogData {
-  tags: [] | undefined;
+  id: string;
   title: string;
-  postingDate: Date;
+  postingDate: string;
   imageURL: string;
+  teaser: string;
+  tags: [] | undefined;
   blogContent: any;
   author: string;
 }
+
+export type BlogDataResponse = { data: BlogData[]; maxPage: number };

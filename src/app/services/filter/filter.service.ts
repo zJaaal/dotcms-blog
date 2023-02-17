@@ -8,7 +8,7 @@ import { Filter } from './filter.model';
 export class FilterService {
   private currentFilterSubject: BehaviorSubject<Filter> = new BehaviorSubject({
     year: 'All',
-    page: 1,
+    page: 0,
   });
 
   public readonly currentFilter: Observable<Filter> =

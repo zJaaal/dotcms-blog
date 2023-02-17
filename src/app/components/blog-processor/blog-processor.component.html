@@ -24,9 +24,11 @@
         *ngSwitchCase="'dotImage'"
       >
         <app-dot-image
-          [src]="content.attrs.data.asset"
-          [width]="400"
-          [alt]="content.attrs.data.title"
+          [contentlet]="{
+            src: content.attrs.data.asset,
+            width: 400,
+            alt: content.attrs.data.title
+          }"
         ></app-dot-image>
       </div>
 

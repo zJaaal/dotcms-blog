@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BlogData } from 'src/app/models/blogData.model';
+import { BlogData } from 'src/app/models/BlogData.model';
 
 @Component({
   selector: 'app-blog-heading',

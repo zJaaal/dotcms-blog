@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap, tap } from 'rxjs';
 import { STATE } from 'src/app/emuns/state.enum';
-import { BlogData } from 'src/app/models/blogData.model';
+import { BlogData } from 'src/app/models/BlogData.model';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Link, Marks } from 'src/app/models/types';
+import { Marks, Link } from 'src/app/models/Text.model';
 
 @Component({
   selector: 'app-text',
