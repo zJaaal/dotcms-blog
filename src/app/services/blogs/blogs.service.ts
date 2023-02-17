@@ -54,7 +54,10 @@ export class BlogsService {
   }
 
   getBlog(id: string) {
-    let url = environment.API_BASE_ID_URL.replace('IDENTIFIER', id);
+    let url = this.builder
+      .baseUrl(environment.API_BASE_ID_URL)
+      .raw(id)
+      .buildURL();
 
     return this.http.get(url).pipe(
       map((response: any) => {
