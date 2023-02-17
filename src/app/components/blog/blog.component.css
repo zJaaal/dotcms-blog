@@ -11,13 +11,3 @@
   height: calc(100vh - 110px);
   overflow: auto;
 }
-
-.image-container {
-  width: 50%;
-  height: 100%;
-}
-
-.heading-container {
-  height: 250px;
-  width: 100%;
-}

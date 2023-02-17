@@ -18,6 +18,7 @@ import { DotContentComponent } from './components/blog-processor/components/dot-
 import { ProductComponent } from './components/blog-processor/components/dot-content/components/product/product.component';
 import { DefaultComponent } from './components/blog-processor/components/default/default.component';
 import { DestinationComponent } from './components/blog-processor/components/dot-content/components/destination/destination.component';
+import { BlogHeadingComponent } from './components/blog/components/blog-heading/blog-heading.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { DestinationComponent } from './components/blog-processor/components/dot
     ProductComponent,
     DefaultComponent,
     DestinationComponent,
+    BlogHeadingComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

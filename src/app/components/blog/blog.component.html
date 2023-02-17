@@ -3,27 +3,7 @@
   *ngIf="data$ | async as blogData; else state == 'LOADING' ? loading : error"
 >
   <!-- heading container -->
-  <div class="d-flex heading-container">
-    <div class="image-container">
-      <app-dot-image [src]="blogData.imageURL"></app-dot-image>
-    </div>
-    <div class="d-flex flex-column justify-content-space-between pl-4">
-      <div>
-        <h2>{{ blogData.title }}</h2>
-        <p class="pt-2">
-          Posting date: {{ blogData.postingDate | date : "mediumDate" }}
-        </p>
-        <p class="pt-1">Author: {{ blogData.author }}</p>
-      </div>
-      <div *ngIf="blogData.tags as tags" class="d-flex flex-wrap">
-        <app-tag
-          class="pt-2 pr-2"
-          *ngFor="let tag of tags"
-          [tagString]="tag"
-        ></app-tag>
-      </div>
-    </div>
-  </div>
+  <app-blog-heading [blogData]="blogData"/>
   <div
     app-blog-processor
     class="mt-4 mb-3"
