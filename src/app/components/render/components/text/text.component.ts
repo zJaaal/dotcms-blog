@@ -3,16 +3,7 @@ import { Marks, Link } from 'src/app/models/Text.model';
 
 @Component({
   selector: 'app-text',
-  template: `<a
-      [class]="classes"
-      [href]="link.href"
-      [target]="link.target"
-      *ngIf="link"
-      >{{ text }}</a
-    >
-
-    <span *ngIf="!link" [class]="classes">{{ text }}</span>`,
-  styleUrls: ['./text.component.css'],
+  templateUrl: `./text.component.html`,
 })
 export class TextComponent {
   @Input() text: string = '';
@@ -20,6 +11,7 @@ export class TextComponent {
 
   link?: Link = undefined;
   classes: string = '';
+
   ngOnInit() {
     this.classes =
       this.marks
