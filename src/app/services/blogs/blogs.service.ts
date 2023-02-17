@@ -14,7 +14,7 @@ export class BlogsService {
 
   constructor(private http: HttpClient, private builder: UrlBuilderService) {}
 
-  getBlogList(year?: number, page: number = 1): Observable<any> {
+  getBlogList(year?: number, page: number = 1): Observable<BlogInfo[]> {
     let OFFSET = this.LIMIT * (page - 1);
 
     let baseQuery = this.builder
@@ -36,6 +36,7 @@ export class BlogsService {
       .buildURL();
 
     //Using any because the object that the api returns is really big
+    //Quick type my bro
     return this.http.get(finalURL).pipe(
       map(({ contentlets = [] }: any) =>
         contentlets.map(
@@ -52,7 +53,7 @@ export class BlogsService {
     );
   }
 
-  getBlog(id: string): Observable<any> {
+  getBlog(id: string): Observable<BlogData | undefined> {
     let url = this.builder
       .baseUrl(environment.API_BASE_ID_URL)
       .raw(id)
