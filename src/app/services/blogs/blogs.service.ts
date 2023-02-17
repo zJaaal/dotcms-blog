@@ -15,7 +15,7 @@ export class BlogsService {
   constructor(private http: HttpClient, private builder: UrlBuilderService) {}
 
   getBlogList(year?: number, page: number = 1): Observable<BlogInfo[]> {
-    let OFFSET = this.LIMIT * (page - 1);
+    const OFFSET = this.LIMIT * (page - 1);
 
     let baseQuery = this.builder
       .baseUrl(environment.API_BASE_QUERY_URL)
