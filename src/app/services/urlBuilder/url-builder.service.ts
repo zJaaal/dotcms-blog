@@ -107,11 +107,8 @@ export class UrlBuilderService {
    */
   buildImgURL(format: string = 'webp') {
     if (!this.baseUrlString.length) throw new Error("There's no url to build");
-    let result = encodeURI(
-      this.baseUrlString + this.imageString + `/${format}`
-    );
 
-    return result;
+    return encodeURI(this.baseUrlString + this.imageString + `/${format}`);
   }
 
   /**
@@ -121,10 +118,6 @@ export class UrlBuilderService {
   buildURL() {
     if (!this.baseUrlString.length) throw new Error("There's no url to build");
 
-    let result = encodeURI(
-      this.baseUrlString + this.queryString + this.paramsString
-    );
-
-    return result;
+    return encodeURI(this.baseUrlString + this.queryString + this.paramsString);
   }
 }

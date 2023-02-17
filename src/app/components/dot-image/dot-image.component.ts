@@ -8,12 +8,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dot-image.component.css'],
 })
 export class DotImageComponent {
+  // Add object
+  // @Input() contentlet: any = {}
   @Input() src!: string;
   @Input() height?: number;
-  @Input() width?: number;
+  @Input() width?: number = 500;
   @Input() format?: string;
   @Input() alt?: string;
-  @Input() imgStyles?: Record<string, string>;
 
   finalSRC: string = '';
   fallbackSrc: string = environment.IMAGE_FALLBACK_URL;
@@ -21,6 +22,7 @@ export class DotImageComponent {
   constructor(private builder: UrlBuilderService) {}
 
   ngOnChanges() {
+    //dont use this builder here
     this.builder = this.builder.baseUrl(environment.API_BASE + this.src);
 
     if (this.width) this.builder = this.builder.width(this.width);
@@ -29,10 +31,10 @@ export class DotImageComponent {
     this.finalSRC = this.builder.buildImgURL(this.format);
   }
 
-  onError(e: Event) {
-    (e.target as HTMLImageElement).src = this.builder
+  onError() {
+    this.finalSRC = this.builder
       .baseUrl(this.fallbackSrc)
-      .raw(`${this.width}x${this.height}/110B36 ?text=dotCMS`)
+      .raw(`${this.width}/110B36 ?text=dotCMS`)
       .buildURL();
   }
 }

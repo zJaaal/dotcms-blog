@@ -1,15 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 300px
+}
+
+.container {
+  flex-grow: 1;
+  height: 100%;
+}
+
 .item-container {
   flex-grow: 1;
   position: relative;
-  min-height: 130px;
-  max-height: 130px;
+  height: 25%;
   z-index: 1;
 }
 
 .skeleton {
   flex-grow: 1;
-  min-height: 130px;
-  max-height: 130px;
+  height: 25%;
   background-color: var(--primary);
 }
 
@@ -30,8 +40,4 @@
 .item-container:hover::after {
   box-shadow: none;
   background-color: rgba(0, 0, 0, 0.8);
-}
-
-.page-container {
-  background-color: var(--primary);
 }

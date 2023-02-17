@@ -1,13 +1,12 @@
 <div
   class="d-flex flex-column flex-1 blog-container"
-  *ngIf="data$ | async as blogData; else noData"
+  *ngIf="data$ | async as blogData; else state == 'LOADING' ? loading : error"
 >
-  <div class="d-flex">
-    <app-dot-image
-      [src]="blogData.imageURL"
-      [width]="300"
-      [height]="190"
-    ></app-dot-image>
+  <!-- heading container -->
+  <div class="d-flex heading-container">
+    <div class="image-container">
+      <app-dot-image [src]="blogData.imageURL"></app-dot-image>
+    </div>
     <div class="d-flex flex-column justify-content-space-between pl-4">
       <div>
         <h2>{{ blogData.title }}</h2>
@@ -32,8 +31,15 @@
   ></div>
 </div>
 
-<ng-template #noData>
+<ng-template #error>
   <div class="blog-container d-flex justify-content-center pl-4 pt-4">
     <h3>Couldn't find anything...</h3>
+  </div>
+</ng-template>
+
+<!-- Create a good component for loading -->
+<ng-template #loading>
+  <div class="blog-container d-flex justify-content-center pl-4 pt-4">
+    <h3>Loading...</h3>
   </div>
 </ng-template>

@@ -1,5 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  height: 25%;
+  z-index: 1;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+:host:hover {
+  cursor: pointer;
+}
+
+:host:after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 1) inset;
+  transition: all 0.3s ease-in-out;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+
 .info-container {
-  width: 280px;
+  width: 100%;
   z-index: 1;
   padding-bottom: 10px;
   padding-left: 10px;
@@ -18,12 +46,13 @@
 
 .image-container {
   position: absolute;
-  height: 130px;
+  height: 100%;
+  width: 100%;
 }
 
 .info-container-hover {
-  height: 130px;
-  width: 280px;
+  height: 100%;
+  width: 100%;
   z-index: 1;
   visibility: none;
   opacity: 0;

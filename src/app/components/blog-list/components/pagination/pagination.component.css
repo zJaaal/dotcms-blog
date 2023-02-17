@@ -1,6 +1,10 @@
-.page-container {
-  padding-top: 15px;
+:host {
+  height: 50px;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
 }
+
 
 .arrow-icon {
   padding-left: 10px;

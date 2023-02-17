@@ -1,11 +1,3 @@
-export type BlogInfoConstructor = {
-  id: string;
-  title: string;
-  postingDate: string;
-  imageURL: string;
-  teaser: string;
-};
-
 interface Text {
   textAlign: string;
 }
@@ -37,13 +29,4 @@ export type Link = {
   class?: string;
   href: string;
   target: string;
-};
-
-export type BlogDataConstructor = {
-  tags?: [];
-  title: string;
-  postingDate: Date;
-  imageURL: string;
-  blogContent: any;
-  author: string;
 };

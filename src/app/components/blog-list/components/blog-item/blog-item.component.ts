@@ -9,10 +9,5 @@ import { BlogInfo } from 'src/app/models/blogInfo.model';
 export class BlogItemComponent {
   @Input() blogData!: BlogInfo;
 
-  imgStyles: Record<string, string> = {
-    'z-index': '-1',
-    position: 'relative',
-  };
-
   constructor() {}
 }

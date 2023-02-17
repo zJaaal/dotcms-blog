@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { BlogInfo } from '../../models/blogInfo.model';
 import { UrlBuilderService } from '../urlBuilder/url-builder.service';
 import { BlogData } from 'src/app/models/blogData.model';
@@ -14,7 +14,7 @@ export class BlogsService {
 
   constructor(private http: HttpClient, private builder: UrlBuilderService) {}
 
-  getInfo(year?: number, page: number = 1) {
+  getBlogList(year?: number, page: number = 1): Observable<any> {
     let OFFSET = this.LIMIT * (page - 1);
 
     let baseQuery = this.builder
@@ -37,41 +37,42 @@ export class BlogsService {
 
     //Using any because the object that the api returns is really big
     return this.http.get(finalURL).pipe(
-      map((response: any) =>
-        response.contentlets
-          ? response.contentlets.map((post: any) => {
-              return new BlogInfo({
-                id: post.identifier,
-                title: post.title,
-                postingDate: post.postingDate,
-                imageURL: post.image,
-                teaser: post.teaser,
-              });
-            })
-          : []
+      map(({ contentlets = [] }: any) =>
+        contentlets.map(
+          (post: any) =>
+            ({
+              id: post.identifier,
+              title: post.title,
+              postingDate: post.postingDate,
+              imageURL: post.image,
+              teaser: post.teaser,
+            } as BlogInfo)
+        )
       )
     );
   }
 
-  getBlog(id: string) {
+  getBlog(id: string): Observable<any> {
     let url = this.builder
       .baseUrl(environment.API_BASE_ID_URL)
       .raw(id)
       .buildURL();
 
     return this.http.get(url).pipe(
-      map((response: any) => {
-        let data = response.contentlets[0];
-        return data
-          ? new BlogData({
-              tags: data.tags?.replace(new RegExp(':|,', 'g'), ' ').split(' '),
-              title: data.title,
-              postingDate: data.postingDate,
-              imageURL: data.image,
-              blogContent: data.blogContent,
-              author: data.modUserName,
-            })
-          : undefined;
+      map(({ contentlets = [] }: any) => {
+        if (!contentlets.length) return;
+
+        let { tags, title, postingDate, image, blogContent, modUserName } =
+          contentlets[0];
+
+        return {
+          title,
+          postingDate,
+          blogContent,
+          tags: tags?.replace(new RegExp(':[A-Z]+,|,', 'gi'), ' ').split(' '),
+          imageURL: image,
+          author: modUserName,
+        } as BlogData;
       })
     );
   }

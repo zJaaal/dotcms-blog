@@ -14,7 +14,6 @@ import { environment } from 'src/environments/environment';
 export class BlogListComponent {
   blogsList: BlogInfo[] = [];
   loading: boolean = false;
-  rest: number[] = [];
   empty: boolean = false;
   firstRender: boolean = true;
 
@@ -31,7 +30,10 @@ export class BlogListComponent {
         tap(() => (this.loading = true)),
         //This creates an observable from the result of the first observable
         switchMap(({ year, page }) => {
-          return this.blogs.getInfo(year == 'All' ? undefined : +year, page);
+          return this.blogs.getBlogList(
+            year == 'All' ? undefined : +year,
+            page
+          );
         })
       )
       // Here we subscribe to the last observable
@@ -39,10 +41,6 @@ export class BlogListComponent {
         this.blogsList = response;
 
         this.loading = false;
-
-        this.rest = Array.from({
-          length: environment.ITEM_LIMIT_PER_PAGE - response.length,
-        });
 
         this.empty = !Boolean(response.length);
 

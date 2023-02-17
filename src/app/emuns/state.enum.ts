@@ -1,0 +1,5 @@
+export enum STATE {
+  LOADING = 'LOADING',
+  COMPLETED = 'COMPLETED',
+  ERROR = 'ERROR',
+}
