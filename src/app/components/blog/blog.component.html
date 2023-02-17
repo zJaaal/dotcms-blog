@@ -2,7 +2,7 @@
   class="d-flex flex-column flex-1 blog-container"
   *ngIf="data$ | async as blogData; else state == 'LOADING' ? loading : error"
 >
-  <!-- heading container -->
+
   <app-blog-heading [blogData]="blogData"/>
   <div
     app-render
@@ -17,7 +17,6 @@
   </div>
 </ng-template>
 
-<!-- Create a good component for loading -->
 <ng-template #loading>
   <div class="blog-container d-flex justify-content-center pl-4 pt-4">
     <h3>Loading...</h3>
