@@ -33,9 +33,6 @@
 .info-container {
   width: 100%;
   z-index: 1;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
   transition: all 0.3s ease-in-out;
 }
 
