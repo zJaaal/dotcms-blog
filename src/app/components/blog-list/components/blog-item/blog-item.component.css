@@ -5,7 +5,7 @@
   position: relative;
   height: 25%;
   z-index: 1;
-  animation: fadeIn 0.3s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 :host:hover {
