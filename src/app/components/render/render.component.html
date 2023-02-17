@@ -5,7 +5,7 @@
         <p
           [blogContent]="content"
           [ngStyle]="{ 'text-align': content.attrs.textAlign }"
-          app-blog-processor
+          app-render
         ></p>
       </div>
 
@@ -16,7 +16,7 @@
       ></app-text>
 
       <app-heading *ngSwitchCase="'heading'" [attrs]="content.attrs">
-        <span [blogContent]="content" app-blog-processor></span>
+        <span [blogContent]="content" app-render></span>
       </app-heading>
 
       <div
@@ -32,41 +32,13 @@
         ></app-dot-image>
       </div>
 
-      <ul
-        class="pl-4 mt-4 mb-4"
-        *ngSwitchCase="'bulletList'"
-        [blogContent]="content"
-        app-blog-processor
-      ></ul>
-      <li
-        *ngSwitchCase="'listItem'"
-        [blogContent]="content"
-        app-blog-processor
-      ></li>
+      <ul *ngSwitchCase="'bulletList'" [blogContent]="content" app-render></ul>
+      <li *ngSwitchCase="'listItem'" [blogContent]="content" app-render></li>
 
-      <table
-        class="mt-4 mb-4"
-        *ngSwitchCase="'table'"
-        [blogContent]="content"
-        app-blog-processor
-      ></table>
-      <tr
-        *ngSwitchCase="'tableRow'"
-        [blogContent]="content"
-        app-blog-processor
-      ></tr>
-      <th
-        class="p-2"
-        *ngSwitchCase="'tableHeader'"
-        [blogContent]="content"
-        app-blog-processor
-      ></th>
-      <td
-        class="p-2"
-        *ngSwitchCase="'tableCell'"
-        [blogContent]="content"
-        app-blog-processor
-      ></td>
+      <table *ngSwitchCase="'table'" [blogContent]="content" app-render></table>
+      <tr *ngSwitchCase="'tableRow'" [blogContent]="content" app-render></tr>
+      <th *ngSwitchCase="'tableHeader'" [blogContent]="content" app-render></th>
+      <td *ngSwitchCase="'tableCell'" [blogContent]="content" app-render></td>
 
       <app-dot-content
         *ngSwitchCase="'dotContent'"

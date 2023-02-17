@@ -11,14 +11,14 @@ import { BlogItemComponent } from './components/blog-list/components/blog-item/b
 import { DotImageComponent } from './components/dot-image/dot-image.component';
 import { PaginationComponent } from './components/blog-list/components/pagination/pagination.component';
 import { TagComponent } from './components/tag/tag.component';
-import { BlogProcessorComponent } from './components/blog-processor/blog-processor.component';
-import { TextComponent } from './components/blog-processor/components/text/text.component';
-import { HeadingComponent } from './components/blog-processor/components/heading/heading.component';
-import { DotContentComponent } from './components/blog-processor/components/dot-content/dot-content.component';
-import { ProductComponent } from './components/blog-processor/components/dot-content/components/product/product.component';
-import { DefaultComponent } from './components/blog-processor/components/default/default.component';
-import { DestinationComponent } from './components/blog-processor/components/dot-content/components/destination/destination.component';
 import { BlogHeadingComponent } from './components/blog/components/blog-heading/blog-heading.component';
+import { DefaultComponent } from './components/render/components/default/default.component';
+import { DestinationComponent } from './components/render/components/dot-content/components/destination/destination.component';
+import { ProductComponent } from './components/render/components/dot-content/components/product/product.component';
+import { DotContentComponent } from './components/render/components/dot-content/dot-content.component';
+import { HeadingComponent } from './components/render/components/heading/heading.component';
+import { TextComponent } from './components/render/components/text/text.component';
+import { RenderComponent } from './components/render/render.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { BlogHeadingComponent } from './components/blog/components/blog-heading/
     DotImageComponent,
     PaginationComponent,
     TagComponent,
-    BlogProcessorComponent,
+    RenderComponent,
     TextComponent,
     HeadingComponent,
     DotContentComponent,
