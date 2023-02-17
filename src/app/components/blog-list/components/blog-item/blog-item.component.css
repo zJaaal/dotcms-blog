@@ -25,6 +25,10 @@
 
 }
 
+:host:hover::after {
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.8);
+}
 
 .info-container {
   width: 100%;
@@ -42,6 +46,7 @@
 .item-container:hover .info-container-hover {
   opacity: 1;
 }
+
 
 
 .image-container {

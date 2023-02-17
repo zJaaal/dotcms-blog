@@ -1,14 +1,8 @@
-<div *ngIf="!loading" class="bg-blue container">
+<div class="bg-blue container">
   <app-blog-item
     *ngFor="let blogData of blogsList"
     [blogData]="blogData"
   ></app-blog-item>
-</div>
-<div *ngIf="loading" class="bg-blue container">
-  <div
-    class="d-flex flex-column skeleton justify-content-end"
-    *ngFor="let skeleton of [1, 2, 3, 4]"
-  ></div>
 </div>
 <app-pagination
   [listLength]="blogsList.length"
