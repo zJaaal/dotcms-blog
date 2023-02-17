@@ -23,7 +23,6 @@ export class BlogsService {
       .pipe(
         map(({ contentlets = [] }: any) =>
           contentlets.map(
-            //Using any because the object that the api returns is really big
             (post: APIResponse) =>
               ({
                 id: post.identifier,
