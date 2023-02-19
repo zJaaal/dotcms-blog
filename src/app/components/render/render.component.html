@@ -40,12 +40,10 @@
       <th *ngSwitchCase="'tableHeader'" [blogContent]="content" app-render></th>
       <td *ngSwitchCase="'tableCell'" [blogContent]="content" app-render></td>
 
-      <app-dot-content
-        *ngSwitchCase="'dotContent'"
-        [data]="content.attrs.data"
-      ></app-dot-content>
+      <app-dot-content *ngSwitchCase="'dotContent'" [data]="content.attrs.data" />
+
       <ng-container *ngIf="!production">
-        <app-default [type]="content.type" *ngSwitchDefault> </app-default>
+        <app-default [type]="content.type" *ngSwitchDefault />
       </ng-container>
     </ng-container>
   </ng-container>

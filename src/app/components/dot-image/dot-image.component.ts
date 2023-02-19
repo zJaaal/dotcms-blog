@@ -9,7 +9,6 @@ import { Contentlet } from './dot-image.types';
   styleUrls: ['./dot-image.component.css'],
 })
 export class DotImageComponent {
-  // Add object
   @Input() contentlet!: Contentlet;
 
   finalSRC: string = '';

@@ -1,7 +1,6 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { STATE } from 'src/app/emuns/state.enum';
 import { FilterService } from 'src/app/services/filter/filter.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pagination',
