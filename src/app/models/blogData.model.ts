@@ -1,26 +1,12 @@
-import { BlogDataConstructor } from './types';
-
-export class BlogData {
-  tags: [] | undefined;
+export interface BlogData {
+  id: string;
   title: string;
-  postingDate: Date;
+  postingDate: string;
   imageURL: string;
+  teaser: string;
+  tags: [] | undefined;
   blogContent: any;
   author: string;
-
-  constructor({
-    tags,
-    title,
-    postingDate,
-    imageURL,
-    blogContent,
-    author,
-  }: BlogDataConstructor) {
-    this.tags = tags;
-    this.title = title;
-    this.postingDate = new Date(postingDate);
-    this.imageURL = imageURL;
-    this.blogContent = blogContent;
-    this.author = author;
-  }
 }
+
+export type BlogDataResponse = { data: BlogData[]; maxPage: number };

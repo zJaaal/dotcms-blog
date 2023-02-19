@@ -11,9 +11,9 @@ export class HeaderComponent {
   constructor(private filterService: FilterService) {}
 
   handleYearChange({ target }: Event) {
-    this.filterService.setCurrentFilter({
-      page: 1,
+    this.filterService.setCurrentFilter(() => ({
       year: (target as HTMLSelectElement).value,
-    });
+      page: 0,
+    }));
   }
 }

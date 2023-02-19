@@ -1,0 +1,56 @@
+
+<!--
+  This component uses the recursivity approach to render all the nested objects in
+  the object tree that the api returns, we can say that every "content" is a node of the tree
+-->
+
+<ng-container *ngIf="blogContent">
+  <ng-container *ngFor="let content of blogContent.content">
+    <ng-container [ngSwitch]="content.type">
+      <div *ngSwitchCase="'paragraph'" class="mb-2 mt-2">
+        <p
+          [blogContent]="content"
+          [ngStyle]="{ 'text-align': content.attrs.textAlign }"
+          app-render
+        ></p>
+      </div>
+
+      <app-text
+        *ngSwitchCase="'text'"
+        [marks]="content.marks"
+        [text]="content.text"
+      ></app-text>
+
+      <app-heading *ngSwitchCase="'heading'" [attrs]="content.attrs">
+        <span [blogContent]="content" app-render></span>
+      </app-heading>
+
+      <div
+        class="d-flex justify-content-center mb-4 mt-4"
+        *ngSwitchCase="'dotImage'"
+      >
+        <app-dot-image
+          [contentlet]="{
+            src: content.attrs.data.asset,
+            width: 400,
+            alt: content.attrs.data.title
+          }"
+        ></app-dot-image>
+      </div>
+
+      <ul *ngSwitchCase="'bulletList'" [blogContent]="content" app-render></ul>
+      <li *ngSwitchCase="'listItem'" [blogContent]="content" app-render></li>
+
+      <table *ngSwitchCase="'table'" [blogContent]="content" app-render></table>
+      <tr *ngSwitchCase="'tableRow'" [blogContent]="content" app-render></tr>
+      <th *ngSwitchCase="'tableHeader'" [blogContent]="content" app-render></th>
+      <td *ngSwitchCase="'tableCell'" [blogContent]="content" app-render></td>
+
+      <app-dot-content *ngSwitchCase="'dotContent'" [data]="content.attrs.data" />
+
+      <ng-container *ngIf="!production">
+        <app-default [type]="content.type" *ngSwitchDefault />
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-container>

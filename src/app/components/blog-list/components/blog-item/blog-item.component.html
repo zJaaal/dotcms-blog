@@ -1,5 +1,5 @@
 <div class="d-flex flex-column justify-content-end flex-grow-1 h-100 item-container" [routerLink]="[blogData.id]">
-    <div class="info-container">
+    <div class="info-container d-flex flex-column justify-content-center pl-2 pb-1">
         <p class="info">{{blogData.title}}</p>
         <p class="info small">{{blogData.postingDate | date:"mediumDate"}}</p>
     </div>
@@ -7,6 +7,6 @@
         <p class="info-hover">{{blogData.teaser}}</p>
     </div>
     <div class="image-container">
-       <app-dot-image [width]="300" [height]="130" [src]="blogData.imageURL" [alt]="blogData.title" [imgStyles]="imgStyles"/>
+       <app-dot-image [contentlet]="{src: blogData.imageURL, alt: blogData.title}"/>
     </div>
 </div>

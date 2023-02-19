@@ -1,22 +1,7 @@
-<div *ngIf="!loading" class="bg-blue">
+<div class="bg-blue container">
   <app-blog-item
-    class="d-flex flex-column item-container justify-content-end pointer fade-in"
     *ngFor="let blogData of blogsList"
     [blogData]="blogData"
   ></app-blog-item>
-  <div
-    class="d-flex flex-column skeleton justify-content-end"
-    *ngFor="let _ of rest"
-  ></div>
 </div>
-<div *ngIf="loading" class="bg-blue">
-  <div
-    class="d-flex flex-column skeleton justify-content-end"
-    *ngFor="let skeleton of [1, 2, 3, 4]"
-  ></div>
-</div>
-<app-pagination
-  [listLength]="blogsList.length"
-  [empty]="empty"
-  class="flex-1 d-flex page-container align-items-start justify-content-center"
-></app-pagination>
+<app-pagination [maxPage]="maxPage" [state]="state"></app-pagination>

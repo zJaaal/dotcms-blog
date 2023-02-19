@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { UrlBuilderService } from 'src/app/services/urlBuilder/url-builder.service';
-import { environment } from 'src/environments/environment';
+// import { UrlBuilderService } from 'src/app/services/urlBuilder/url-builder.service';
+import { ENVIRONMENT } from 'src/environments/environment';
+import { Contentlet } from './dot-image.types';
 
 @Component({
   selector: 'app-dot-image',
@@ -8,31 +9,23 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dot-image.component.css'],
 })
 export class DotImageComponent {
-  @Input() src!: string;
-  @Input() height?: number;
-  @Input() width?: number;
-  @Input() format?: string;
-  @Input() alt?: string;
-  @Input() imgStyles?: Record<string, string>;
+  @Input() contentlet!: Contentlet;
 
   finalSRC: string = '';
-  fallbackSrc: string = environment.IMAGE_FALLBACK_URL;
+  private readonly fallbackSrc: string = 'https://www.placeholder.com/';
 
-  constructor(private builder: UrlBuilderService) {}
+  constructor() {}
 
   ngOnChanges() {
-    this.builder = this.builder.baseUrl(environment.API_BASE + this.src);
-
-    if (this.width) this.builder = this.builder.width(this.width);
-    if (this.height) this.builder = this.builder.height(this.height);
-
-    this.finalSRC = this.builder.buildImgURL(this.format);
+    this.finalSRC =
+      ENVIRONMENT.API_BASE +
+      this.contentlet.src +
+      `/${this.contentlet.width}w/webp`;
   }
 
-  onError(e: Event) {
-    (e.target as HTMLImageElement).src = this.builder
-      .baseUrl(this.fallbackSrc)
-      .raw(`${this.width}x${this.height}/110B36 ?text=dotCMS`)
-      .buildURL();
+  onError() {
+    this.finalSRC =
+      this.fallbackSrc +
+      `${this.contentlet.width || 500}.webp/110B36?text=dotCMS`;
   }
 }

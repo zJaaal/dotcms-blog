@@ -1,0 +1,5 @@
+<a [class]="classes" [href]="link.href" [target]="link.target" *ngIf="link">
+  {{ text }}
+</a>
+
+<span *ngIf="!link" [class]="classes">{{ text }}</span>

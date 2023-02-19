@@ -1,0 +1,22 @@
+<div class="d-flex container">
+  <div class="image-container">
+    <app-dot-image
+      [contentlet]="{ src: blogData.imageURL, alt: blogData.title }"
+    ></app-dot-image>
+  </div>
+  <div class="d-flex flex-column pl-4 info-container">
+    <div>
+      <h2>{{ blogData.title }}</h2>
+      <p class="pt-2">
+        Posting date: {{ blogData.postingDate | date : "mediumDate" }}
+      </p>
+      <p class="pt-1">Author: {{ blogData.author }}</p>
+    </div>
+    <div
+      *ngIf="blogData.tags as tags"
+      class="d-flex flex-wrap tag-container pt-3"
+    >
+      <app-tag *ngFor="let tag of tags" [tagString]="tag"></app-tag>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
-import { BlogInfo } from 'src/app/models/blogInfo.model';
+import { STATE } from 'src/app/emuns/state.enum';
+import { BlogData, BlogDataResponse } from 'src/app/models/BlogData.model';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
 import { FilterService } from 'src/app/services/filter/filter.service';
-import { environment } from 'src/environments/environment';
+import { ENVIRONMENT } from 'src/environments/environment';
 
 @Component({
   selector: 'app-blog-list',
@@ -12,9 +13,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./blog-list.component.css'],
 })
 export class BlogListComponent {
-  blogsList: BlogInfo[] = [];
-  loading: boolean = false;
-  rest: number[] = [];
+  blogsList: BlogData[] = [];
+  maxPage: number = 1;
+  state: STATE = STATE.LOADING;
   empty: boolean = false;
   firstRender: boolean = true;
 
@@ -27,28 +28,26 @@ export class BlogListComponent {
   ngOnInit() {
     this.filterService.currentFilter
       .pipe(
-        //Side effect
-        tap(() => (this.loading = true)),
         //This creates an observable from the result of the first observable
         switchMap(({ year, page }) => {
-          return this.blogs.getInfo(year == 'All' ? undefined : +year, page);
+          return this.blogs.getBlogList(
+            year == 'All' ? undefined : +year,
+            page
+          );
         })
       )
       // Here we subscribe to the last observable
-      .subscribe((response) => {
-        this.blogsList = response;
+      .subscribe(({ data, maxPage }: BlogDataResponse) => {
+        this.blogsList = data;
+        this.maxPage = maxPage;
 
-        this.loading = false;
+        this.state = data.length ? STATE.COMPLETED : STATE.ERROR;
 
-        this.rest = Array.from({
-          length: environment.ITEM_LIMIT_PER_PAGE - response.length,
-        });
-
-        this.empty = !Boolean(response.length);
-
-        if (this.firstRender) {
+        if (this.firstRender && this.state != STATE.ERROR) {
+          //This is to navigate to the first ocurrence in the first render
+          //and if the user didn't enter a path to a blog
           if (!this.router.routerState.snapshot.url.replace('/', '').length)
-            this.router.navigate([response[0].id]);
+            this.router.navigate([data[0].id]);
 
           this.firstRender = false;
         }

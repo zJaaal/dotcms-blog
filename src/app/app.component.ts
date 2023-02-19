@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BlogsService } from './services/blogs/blogs.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dotcms-blog';
+
+  constructor(private blogs: BlogsService) {}
+
+  ngOnInit() {
+    this.blogs.getAllData();
+  }
 }

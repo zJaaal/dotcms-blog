@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
-import { BlogData } from 'src/app/models/blogData.model';
+import { Observable, switchMap, tap } from 'rxjs';
+import { STATE } from 'src/app/emuns/state.enum';
+import { BlogData } from 'src/app/models/BlogData.model';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
 
 @Component({
@@ -10,13 +11,16 @@ import { BlogsService } from 'src/app/services/blogs/blogs.service';
   styleUrls: ['./blog.component.css'],
 })
 export class BlogComponent {
-  constructor(private route: ActivatedRoute, private blog: BlogsService) {}
-
+  //Observable to be use in async pipe
   data$!: Observable<BlogData | undefined>;
+  state: STATE = STATE.LOADING;
+
+  constructor(private route: ActivatedRoute, private blog: BlogsService) {}
 
   ngOnInit() {
     this.data$ = this.route.params.pipe(
-      switchMap(({ id }) => this.blog.getBlog(id))
+      switchMap(({ id }) => this.blog.getBlog(id)),
+      tap((data) => (this.state = data ? STATE.COMPLETED : STATE.ERROR))
     );
   }
 }
