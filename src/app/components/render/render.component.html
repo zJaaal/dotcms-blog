@@ -1,3 +1,9 @@
+
+<!--
+  This component uses the recursivity approach to render all the nested objects in
+  the object tree that the api returns, we can say that every "content" is a node of the tree
+-->
+
 <ng-container *ngIf="blogContent">
   <ng-container *ngFor="let content of blogContent.content">
     <ng-container [ngSwitch]="content.type">

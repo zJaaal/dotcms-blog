@@ -21,12 +21,8 @@ export class PaginationComponent {
   }
 
   handleDecrement() {
-    if (
-      this.page == 1 ||
-      this.state == STATE.LOADING ||
-      this.state == STATE.ERROR
-    )
-      return;
+    //We cannot go lower that one and cannot move if there's an error or is loading
+    if (this.page == 1 || this.state != STATE.COMPLETED) return;
 
     --this.page;
 
@@ -37,12 +33,8 @@ export class PaginationComponent {
   }
 
   handleIncrement() {
-    if (
-      this.page == this.maxPage ||
-      this.state == STATE.LOADING ||
-      this.state == STATE.ERROR
-    )
-      return;
+    //We cannot go further that maxPage and cannot move if there's an error or is loading
+    if (this.page == this.maxPage || this.state != STATE.COMPLETED) return;
 
     ++this.page;
 
@@ -52,6 +44,11 @@ export class PaginationComponent {
     }));
   }
 }
+
+// Unused code
+// This pagination was used when I didn't know the max page I could have
+// So this was pretty messy and buggy
+
 // @Component({
 //   selector: 'app-pagination',
 //   templateUrl: './pagination.component.html',
@@ -108,6 +105,7 @@ export class PaginationComponent {
 //     }
 //   }
 //   //Don't really like this but it's what i had to do to make it work
+//   //This could also be segregated in two functions
 //   handleChange(type: string) {
 //     if (this.empty) return;
 //     if (type == 'INCREMENT' && this.page == this.maxPage) return;
@@ -116,7 +114,10 @@ export class PaginationComponent {
 //     if (this.page == 1) this.maxPage = this.maxSafeInteger;
 //     if (type == 'INCREMENT') ++this.page;
 
+//     //This is how the setCurrentFilter before the refactor
 //     this.filterService.setCurrentFilter({
+//
+//        //This function was part of filterService
 //       ...this.filterService.getCurrentFilter(),
 //       page: this.page,
 //     });

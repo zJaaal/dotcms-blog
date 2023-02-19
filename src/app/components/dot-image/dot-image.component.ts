@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 // import { UrlBuilderService } from 'src/app/services/urlBuilder/url-builder.service';
-import { environment } from 'src/environments/environment';
+import { ENVIRONMENT } from 'src/environments/environment';
 import { Contentlet } from './dot-image.types';
 
 @Component({
@@ -18,7 +18,7 @@ export class DotImageComponent {
 
   ngOnChanges() {
     this.finalSRC =
-      environment.API_BASE +
+      ENVIRONMENT.API_BASE +
       this.contentlet.src +
       `/${this.contentlet.width}w/webp`;
   }

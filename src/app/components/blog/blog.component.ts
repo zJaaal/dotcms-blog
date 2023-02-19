@@ -11,6 +11,7 @@ import { BlogsService } from 'src/app/services/blogs/blogs.service';
   styleUrls: ['./blog.component.css'],
 })
 export class BlogComponent {
+  //Observable to be use in async pipe
   data$!: Observable<BlogData | undefined>;
   state: STATE = STATE.LOADING;
 

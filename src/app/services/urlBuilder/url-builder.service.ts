@@ -1,3 +1,9 @@
+// Unused but interesting service
+
+// This service was use to build all the urls in a dynamic way, because
+// I could use the functional programming builder pattern to build querys/params
+// in a url in a better way than using static template literals
+
 // import { Injectable } from '@angular/core';
 // import { environment } from 'src/environments/environment';
 // import { QueryTypes } from './types';

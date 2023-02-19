@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { ENVIRONMENT } from 'src/environments/environment';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { BlogData, BlogDataResponse } from 'src/app/models/BlogData.model';
 import { APIResponse } from 'src/app/models/ApiResponse.model';
@@ -13,13 +13,16 @@ export class BlogsService {
 
   private currentSubject = this.currentDataSubject.asObservable();
 
-  private LIMIT = environment.ITEM_LIMIT_PER_PAGE;
+  private LIMIT = ENVIRONMENT.ITEM_LIMIT_PER_PAGE;
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * @description This method fetches all the data and parse it to a manipulable and smaller object
+   */
   getAllData(): void {
     this.http
-      .get<BlogData>(environment.API_BASE_QUERY_URL)
+      .get<BlogData>(ENVIRONMENT.API_BASE_QUERY_URL)
       .pipe(
         map(({ contentlets = [] }: any) =>
           contentlets.map((post: APIResponse) => {
@@ -52,8 +55,18 @@ export class BlogsService {
       });
   }
 
+  /**
+   * @description This method uses the fetched data and makes a pagination with it using year and page as filters.
+   * @param year
+   * @param page
+   * @returns
+   */
   getBlogList(year?: number, page: number = 0): Observable<BlogDataResponse> {
+    // The index where it should start
     const index = page && Math.abs(page * this.LIMIT);
+
+    // The index it should end
+    const finishIndex = this.LIMIT + index;
 
     return this.currentSubject.pipe(
       map((response) =>
@@ -62,18 +75,32 @@ export class BlogsService {
         )
       ),
       map((data) => ({
-        data: data.slice(index, this.LIMIT + index) as BlogData[],
+        data: data.slice(index, finishIndex) as BlogData[],
         maxPage: Math.ceil(data.length / this.LIMIT),
       }))
     );
   }
 
+  /**
+   * @description This method gets one blog using the identifier as filter
+   * @param identifier
+   * @returns
+   */
   getBlog(identifier: string): Observable<BlogData | undefined> {
     return this.currentSubject.pipe(
       map((data) => data.find(({ id }: BlogData) => identifier == id))
     );
   }
 }
+
+// Last code:
+
+//Pros: This let me fetch only the needed data
+//Cons: The pagination is a mess because I don't know the limit of the data it will come for page
+
+//Solution: Fetch all the data once and manipulate the page and filtering in front end
+//Pros: This makes the pagination more clean
+//Cons: You have to fetch all the data at first time which can be time consuming for the loading time
 
 // import { Injectable } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';

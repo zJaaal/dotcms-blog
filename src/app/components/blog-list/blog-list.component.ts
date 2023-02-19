@@ -5,7 +5,7 @@ import { STATE } from 'src/app/emuns/state.enum';
 import { BlogData, BlogDataResponse } from 'src/app/models/BlogData.model';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
 import { FilterService } from 'src/app/services/filter/filter.service';
-import { environment } from 'src/environments/environment';
+import { ENVIRONMENT } from 'src/environments/environment';
 
 @Component({
   selector: 'app-blog-list',

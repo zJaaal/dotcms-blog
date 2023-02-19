@@ -14,6 +14,10 @@ export class FilterService {
   public readonly currentFilter: Observable<Filter> =
     this.currentFilterSubject.asObservable();
 
+  /**
+   * @description This function takes a callback that exposes the last filter so you can modify the data as you want
+   * @param filterCallback
+   */
   setCurrentFilter(filterCallback: SetFilterProps) {
     this.currentFilterSubject.next({
       ...filterCallback(this.currentFilterSubject.getValue()),

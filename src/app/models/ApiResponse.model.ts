@@ -1,3 +1,5 @@
+//This model was created with QuickType and used to type correctly the api response
+
 export interface APIResponse {
   publishDate: string;
   postingDate: string;
