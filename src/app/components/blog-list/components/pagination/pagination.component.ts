@@ -14,23 +14,42 @@ export class PaginationComponent {
   page: number = 1;
 
   constructor(private filterService: FilterService) {
+    //This is because when you change the year I reset the page
     this.filterService.currentFilter.subscribe(({ page }) => {
       this.page = page + 1;
     });
   }
 
-  handleChange(type: string) {
-    if (this.state == STATE.LOADING || this.state == STATE.ERROR) return;
-    if (type == 'INCREMENT' && this.page == this.maxPage) return;
-    if (type == 'DECREMENT' && this.page == 1) return;
+  handleDecrement() {
+    if (
+      this.page == 1 ||
+      this.state == STATE.LOADING ||
+      this.state == STATE.ERROR
+    )
+      return;
 
-    if (type == 'DECREMENT') --this.page;
-    if (type == 'INCREMENT') ++this.page;
+    --this.page;
 
-    this.filterService.setCurrentFilter({
-      ...this.filterService.getCurrentFilter(),
+    this.filterService.setCurrentFilter((lastFilter) => ({
+      ...lastFilter,
       page: this.page - 1,
-    });
+    }));
+  }
+
+  handleIncrement() {
+    if (
+      this.page == this.maxPage ||
+      this.state == STATE.LOADING ||
+      this.state == STATE.ERROR
+    )
+      return;
+
+    ++this.page;
+
+    this.filterService.setCurrentFilter((lastFilter) => ({
+      ...lastFilter,
+      page: this.page - 1,
+    }));
   }
 }
 // @Component({

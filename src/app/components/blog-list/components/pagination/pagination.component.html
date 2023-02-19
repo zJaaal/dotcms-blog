@@ -2,7 +2,7 @@
   <i
     class="fa-sharp fa-solid fa-circle-arrow-left fa-lg arrow-icon pointer"
     [ngClass]="{ disabled: page == 1 || state != 'COMPLETED' }"
-    (click)="handleChange('DECREMENT')"
+    (click)="handleDecrement()"
   ></i>
   <p class="page">
     {{ page }}
@@ -10,6 +10,6 @@
   <i
     class="fa-sharp fa-solid fa-circle-arrow-right fa-lg arrow-icon pointer"
     [ngClass]="{ disabled: page == maxPage || state != 'COMPLETED' }"
-    (click)="handleChange('INCREMENT')"
+    (click)="handleIncrement()"
   ></i>
 </div>
