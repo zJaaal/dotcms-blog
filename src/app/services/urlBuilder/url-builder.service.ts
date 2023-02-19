@@ -8,7 +8,7 @@
 // export class UrlBuilderService {
 //   private baseUrlString: string = '';
 
-//   private queryString: string = '/query/';
+//   private queryString: string = '';
 //   private paramsString: string = '';
 //   private imageString: string = '';
 
@@ -20,6 +20,7 @@
 //    * @returns URLBuilder
 //    */
 //   baseUrl(url: string) {
+//     //This is to reset the values
 //     this.queryString = '';
 //     this.paramsString = '';
 //     this.imageString = '';
@@ -30,16 +31,16 @@
 
 //   /**
 //    * @description You can set queries with this method, string for select queries and DateQuery object for Date range
-//    * @param query string | QueryTypes
+//    * @param query QueryTypes
 //    * @returns URLBuilder
 //    */
 //   query(query: QueryTypes) {
 //     if (!this.baseUrlString.length) throw new Error("There's no url to build");
+//
+//       this.queryString += !this.queryString.includes('/query/') ? '/query/' : '';
 
 //     if (typeof query == 'string') {
-//       this.queryString += this.queryString.includes('/query/')
-//         ? ' ' + query
-//         : '/query/ ' + query;
+//        this.queryString += query;
 //     } else {
 //       this.queryString += environment.DATE_QUERY_TEMPLATE.replace(
 //         new RegExp('QUERY|FROMTIME|TOTIME', 'g'),

@@ -44,6 +44,8 @@ export class BlogListComponent {
         this.state = data.length ? STATE.COMPLETED : STATE.ERROR;
 
         if (this.firstRender && this.state != STATE.ERROR) {
+          //This is to navigate to the first ocurrence in the first render
+          //and if the user didn't enter a path to a blog
           if (!this.router.routerState.snapshot.url.replace('/', '').length)
             this.router.navigate([data[0].id]);
 
