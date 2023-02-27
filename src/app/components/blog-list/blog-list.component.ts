@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { STATE } from 'src/app/emuns/state.enum';
 import { BlogData, BlogDataResponse } from 'src/app/models/BlogData.model';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
 import { FilterService } from 'src/app/services/filter/filter.service';
-import { ENVIRONMENT } from 'src/environments/environment';
+// import { ENVIRONMENT } from 'src/environments/environment';
 
 @Component({
   selector: 'app-blog-list',
@@ -15,9 +15,11 @@ import { ENVIRONMENT } from 'src/environments/environment';
 export class BlogListComponent {
   blogsList: BlogData[] = [];
   maxPage: number = 1;
+
   state: STATE = STATE.LOADING;
-  empty: boolean = false;
   firstRender: boolean = true;
+
+  // empty: boolean = false;
 
   constructor(
     private blogs: BlogsService,

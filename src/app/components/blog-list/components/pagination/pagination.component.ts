@@ -21,33 +21,33 @@ export class PaginationComponent {
   }
 
   handleDecrement() {
-    //We cannot go lower that one and cannot move if there's an error or is loading
+    //We cannot go lower than one and cannot move if there's an error or is loading
     if (this.page == 1 || this.state != STATE.COMPLETED) return;
 
     --this.page;
 
-    this.filterService.setCurrentFilter((lastFilter) => ({
-      ...lastFilter,
+    this.filterService.setCurrentFilter((prev) => ({
+      ...prev,
       page: this.page - 1,
     }));
   }
 
   handleIncrement() {
-    //We cannot go further that maxPage and cannot move if there's an error or is loading
+    //We cannot go further than maxPage and cannot move if there's an error or is loading
     if (this.page == this.maxPage || this.state != STATE.COMPLETED) return;
 
     ++this.page;
 
-    this.filterService.setCurrentFilter((lastFilter) => ({
-      ...lastFilter,
+    this.filterService.setCurrentFilter((prev) => ({
+      ...prev,
       page: this.page - 1,
     }));
   }
 }
 
-// Unused code
-// This pagination was used when I didn't know the max page I could have
-// So this was pretty messy and buggy
+// // Unused code
+// // This pagination was used when I didn't know the max page I could have
+// // So this was pretty messy and buggy
 
 // @Component({
 //   selector: 'app-pagination',
@@ -116,8 +116,7 @@ export class PaginationComponent {
 
 //     //This is how the setCurrentFilter before the refactor
 //     this.filterService.setCurrentFilter({
-//
-//        //This function was part of filterService
+//       //This function was part of filterService
 //       ...this.filterService.getCurrentFilter(),
 //       page: this.page,
 //     });

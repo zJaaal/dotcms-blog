@@ -63,16 +63,19 @@ export class BlogsService {
    */
   getBlogList(year?: number, page: number = 0): Observable<BlogDataResponse> {
     // The index where it should start
-    const index = page && Math.abs(page * this.LIMIT);
+    const index = page && page * this.LIMIT;
 
     // The index it should end
     const finishIndex = this.LIMIT + index;
 
     return this.currentSubject.pipe(
       map((response) =>
-        response.filter(({ postingDate }: BlogData) =>
-          year ? new Date(postingDate).getFullYear() == year : true
-        )
+        year
+          ? response.filter(
+              ({ postingDate }: BlogData) =>
+                new Date(postingDate).getFullYear() == year
+            )
+          : response
       ),
       map((data) => ({
         data: data.slice(index, finishIndex) as BlogData[],
@@ -125,13 +128,13 @@ export class BlogsService {
 //       .baseUrl(environment.API_BASE_QUERY_URL)
 //       .query('+ContentType:Blog');
 
-//     if (year) {
-//       baseQuery = baseQuery.query({
-//         luceneQuery: '+Blog.postingDate',
-//         from: `${year}0101`,
-//         to: `${year}1231`,
-//       });
-//     }
+// if (year) {
+//   baseQuery = baseQuery.query({
+//     luceneQuery: '+Blog.postingDate',
+//     from: `${year}0101`,
+//     to: `${year}1231`,
+//   });
+// }
 
 //     const finalURL = baseQuery
 //       .param('limit', this.LIMIT)
